@@ -168,49 +168,49 @@
 	"resLabel": {
 		"desPos": [100, 60],
 		"textColor": [255, 255, 255],
-		"text": "游戏分辨率："
+		"text": "Resolution："
 	},
 
 	"windowModeSelDesRect": [320, 105, 200, 30],
 	"windowModeLabel": {
 		"desPos": [100, 105],
 		"textColor": [255, 255, 255],
-		"text": "窗口模式："
+		"text": "Window Mode："
 	},
 
 	"mvSelDesRect": [320, 150, 200, 30],
 	"mvLabel": {
 		"desPos": [100, 150],
 		"textColor": [255, 255, 255],
-		"text": "音乐音量："
+		"text": "Music Volume:"
 	},
 
 	"sevSelDesRect": [320, 195, 200, 30],
 	"sevLabel": {
 		"desPos": [100, 195],
 		"textColor": [255, 255, 255],
-		"text": "音效音量："
+		"text": "Sound Volume:"
 	},
 
 	"uiModSelDesRect": [320, 240, 200, 30],
 	"uiModLabel": {
 		"desPos": [100, 240],
 		"textColor": [255, 255, 255],
-		"text": "界面MOD："
+		"text": "Interface Mod："
 	},
 
 	"lanSelDesRect": [320, 285, 200, 30],
 	"lanLabel": {
 		"desPos": [100, 285],
 		"textColor": [255, 255, 255],
-		"text": "语言："
+		"text": "Language："
 	},
 
 	"psSelDesRect": [320, 330, 200, 30],
 	"psLabel": {
 		"desPos": [100, 330],
 		"textColor": [255, 255, 255],
-		"text": "粒子效果："
+		"text": "Particle Effect："
 	},
 
 	"autoCtSelDesRect": [320, 375, 200, 30],

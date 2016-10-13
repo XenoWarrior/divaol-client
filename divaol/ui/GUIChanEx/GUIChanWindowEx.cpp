@@ -168,9 +168,9 @@ namespace gcn
 		b[0]->setPosition(tv[L"1_1_x"].asInt(), tv[L"1_1_y"].asInt());
 		b[1]->setPosition(tv[L"2_1_x"].asInt(), tv[L"2_1_y"].asInt());
 		b[2]->setPosition(tv[L"2_2_x"].asInt(), tv[L"2_2_y"].asInt());
-		b[0]->setText(L"ºÃµÄ");
-		b[1]->setText(L"ÊÇ");
-		b[2]->setText(L"·ñ");
+		b[0]->setText(L"OK");
+		b[1]->setText(L"YES");
+		b[2]->setText(L"NO");
 		b[0]->userData = (void*) RES_OK;
 		b[1]->userData = (void*) RES_YES;
 		b[2]->userData = (void*) RES_NO;

@@ -1,8 +1,8 @@
 {
   "MessageChannels": {
-    "world" : "世界",
-    "private" : "私聊",
-    "stage": "舞台"
+    "world" : "Global",
+    "private" : "PM",
+    "stage": "Stage"
   },
   "StatusPanel/Config": {
   	"fontSize": 30,
@@ -313,7 +313,7 @@
     "desY_1": 1017,
     "desX_2": 0,
     "desY_2": 933,
-    "items": ["世界","舞台","私聊"],
+    "items": ["World","Stage","PM"],
     "animationTime": 15
   },
   "MessageArea/TextBox": {
@@ -475,21 +475,21 @@
   },
   
   "Login/Label_1": {
-	  "text": "用户登录",
+	  "text": "Login",
     "desX": 776,
     "desY": 384,
     "width": 100,
     "height": 20
   },
   "Login/Label_2": {
-	  "text": "账户",
+	  "text": "User",
     "desX": 746,
     "desY": 444,
     "width": 60,
     "height": 20
   },
   "Login/Label_3": {
-	  "text": "密码",
+	  "text": "Pass",
     "desX": 746,
     "desY": 494,
     "width": 60,
