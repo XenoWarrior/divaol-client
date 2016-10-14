@@ -42,7 +42,7 @@ namespace divapomelo
 		ServerInfo() {
 			gatePort = 3014;
 			//gateIp = "divaolserver00.gmgate.net";
-			gateIp = "dolgs.projectge.com";
+			gateIp = "projectge.com";
 		}
 		~ServerInfo() {}
 
@@ -51,7 +51,6 @@ namespace divapomelo
 		uint32 connectorPort;
 		Base::String connectorIp;
 	};
-
 }
 
 #endif

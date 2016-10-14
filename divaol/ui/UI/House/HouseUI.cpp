@@ -2801,7 +2801,7 @@ namespace diva
 #endif
 			if(!connectServer())
 			{
-				mgr->GetMB()->Show(L"无法连接服务器", L"错误", gcn::MessageBoxEx::TYPE_OK);
+				mgr->GetMB()->Show(L"Unable toconnect to server.", L"Error", gcn::MessageBoxEx::TYPE_OK);
 				disconnectServer();
 				return;
 			}
@@ -2868,8 +2868,10 @@ namespace diva
 			if (tmp > 0 && stageList->getItemCount() > tmp)
 			{
 				StageListItem *item = dynamic_cast<StageListItem*>(stageList->getItem(tmp));
+				
 				if (item->getInfo().playerInfo.id == 0)
 					return;
+				
 				sora::SoraBGMManager::Instance()->playSE(soundConfig[L"clickButton"].asString(), SETTINGS.getSEVolume());
 
 				mgr->GetMB()->RegisterCallback(MessageBoxEx::Callback(&HouseUI::cb_kick_player, this));

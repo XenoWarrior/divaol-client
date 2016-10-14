@@ -1506,7 +1506,12 @@ namespace sora {
         if(font == this->getSystemFont()) {
             setSystemFont((SoraFont*)0);
         }
-		pFontManager->releaseFont(font);
+		try
+		{
+			pFontManager->releaseFont(font);
+		}
+		catch (...)
+		{ }
 	}
 	
 	void SoraCore::enumFilesInFolder(std::vector<StringType>& cont, const StringType& folder) {
