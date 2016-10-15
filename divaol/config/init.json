@@ -16,6 +16,13 @@
 		},
 		{
 			"type" : "image",
+			"texture" : "res/splash/logo_xenpowered.png",
+			"fadeTime" : 1,
+			"detainTime" : 1.5,
+			"canJump" : true
+		},
+		{
+			"type" : "image",
 			"texture" : "res/splash/warning.png",
 			"fadeTime" : 1,
 			"detainTime" : 1.5,

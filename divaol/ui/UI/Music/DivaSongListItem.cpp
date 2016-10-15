@@ -1,4 +1,4 @@
-#include "DivaSongListItem.h"
+ï»¿#include "DivaSongListItem.h"
 #include "MusicUI.h"
 #include <cstring>
 
@@ -18,8 +18,8 @@ namespace diva
 			artistFont = NULL;
 			this->notDownloadImage = NULL;
 			previewFilename = L"";
-			listeningFilename  = L"";
-			
+			listeningFilename = L"";
+
 			setDownloadFinished(false);
 			setDownloadProgress(0);
 		}
@@ -34,7 +34,7 @@ namespace diva
 			preview = NULL;
 			smallPreview = NULL;
 			previewFilename = L"";
-			listeningFilename  = L"";
+			listeningFilename = L"";
 			this->notDownloadImage = notDownloadImage;
 
 			setDownloadFinished(false);
@@ -165,11 +165,11 @@ namespace diva
 		void SongListItem::draw(Graphics* graphics, Font* font, int state, int alpha)
 		{
 			// preview
-		
+
 			if (look == SONG && smallPreview)
 			{
 				int desW = 160, desH = 90;
-				(((SoraGUIImage*)smallPreview)->getSprite())->setScale(double(desW) / smallPreview->getWidth(), 
+				(((SoraGUIImage*)smallPreview)->getSprite())->setScale(double(desW) / smallPreview->getWidth(),
 					double(desH) / smallPreview->getHeight());
 				graphics->drawImage(smallPreview, 333, 25);
 			}
@@ -177,15 +177,15 @@ namespace diva
 			{
 				gcn::Rectangle rect;
 				if (state == 0)
-					rect = gcn::Rectangle(1432,412+95*2,210,95);
+					rect = gcn::Rectangle(1432, 412 + 95 * 2, 210, 95);
 				else if (state == 1)
-					rect = gcn::Rectangle(1432,412,210,95);
+					rect = gcn::Rectangle(1432, 412, 210, 95);
 				else if (state == 2)
-					rect = gcn::Rectangle(1432,412+95,210,95);
+					rect = gcn::Rectangle(1432, 412 + 95, 210, 95);
 
 				int desW = 210, desH = 95;
 				MusicUI* ui = MusicUI::Instance();
-				(((SoraGUIImage*)ui->uiImage1)->getSprite())->setScale(double(desW) / rect.width, 
+				(((SoraGUIImage*)ui->uiImage1)->getSprite())->setScale(double(desW) / rect.width,
 					double(desH) / rect.height);
 				graphics->drawImage(ui->uiImage1, rect.x, rect.y, 299, 22, rect.width, rect.height);
 			}
@@ -224,7 +224,7 @@ namespace diva
 				// Artists
 				if (mapInfo.header.artists.size() == 0)
 				{
-					str = L"Î´ÖªÒÕÊõ¼Ò";
+					str = L"Unknown Artist";
 				}
 				else
 				{
@@ -235,12 +235,12 @@ namespace diva
 
 				if (mapInfo.header.vocaloids.size() == 0)
 				{
-					str += L" Feat. Î´Öª";
+					str += L" Feat. Unknown";
 				}
 				else
 				{
 					str += L" Feat. " + mapInfo.header.vocaloids[0];
-					if(mapInfo.header.vocaloids.size()>1)
+					if (mapInfo.header.vocaloids.size()>1)
 						str += L", ...";
 				}
 
@@ -252,7 +252,7 @@ namespace diva
 
 				// Length and bpm
 				wchar_t temp[30];
-				_swprintf(temp, L"%02d:%02d  BPM %d  ÄÑ¶È:%d", mapInfo.header.songLength / 60, mapInfo.header.songLength % 60, mapInfo.header.bpm, mapInfo.levels[mapInfo.getLevel(difIndex)].difficulty);
+				_swprintf(temp, L"%02d:%02d  BPM %d  Difficulty:%d", mapInfo.header.songLength / 60, mapInfo.header.songLength % 60, mapInfo.header.bpm, mapInfo.levels[mapInfo.getLevel(difIndex)].difficulty);
 				str = temp;
 				graphics->drawTextW(str, 30, 67);
 
@@ -272,12 +272,12 @@ namespace diva
 				// download bar
 				if (!getDownloadFinished())
 				{
-					graphics->drawImage(image, 0, 847, 185, 85, 
+					graphics->drawImage(image, 0, 847, 185, 85,
 						int((prog / 1.0) * 368), 43);
 					if (notDownloadImage)
 					{
 						int desWidth = 38, desHeight = 38;
-						(((SoraGUIImage*)notDownloadImage)->getSprite())->setScale(double(desWidth) / notDownloadImage->getWidth(), 
+						(((SoraGUIImage*)notDownloadImage)->getSprite())->setScale(double(desWidth) / notDownloadImage->getWidth(),
 							double(desHeight) / notDownloadImage->getHeight());
 						graphics->drawImage(notDownloadImage, 0, 0, 200, 95, notDownloadImage->getWidth(), notDownloadImage->getHeight());
 					}
@@ -286,7 +286,7 @@ namespace diva
 				// preview loading
 				if (!smallPreview)
 				{
-					graphics->drawTextW(L"¶ÁÈ¡ÖÐ...", 400, 50);
+					graphics->drawTextW(L"Downloading...", 400, 50);
 				}
 			}
 			else if (look == RANDOM)
@@ -304,7 +304,7 @@ namespace diva
 					graphics->setFont(artistFont);
 				else
 					graphics->setFont(font);
-				graphics->setColor(gcn::Color(255, 255, 255, alpha)); 
+				graphics->setColor(gcn::Color(255, 255, 255, alpha));
 				graphics->drawTextW(L"Artist: " + mapInfo.header.artists[0], 60, 40);
 			}
 		}

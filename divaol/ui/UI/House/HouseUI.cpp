@@ -363,31 +363,31 @@ namespace diva
 				}
 				else if(msg.description()=="already")
 				{
-					mgr->GetMB()->Show(L"该账号已经登录。", L"提示");
+					mgr->GetMB()->Show(L"该账号已经登录。", L"Prompt");
 				}
 				else if(msg.description()=="wrongpasswd")
 				{
-					mgr->GetMB()->Show(L"账号或密码错误。", L"提示");
+					mgr->GetMB()->Show(L"账号或密码错误。", L"Prompt");
 				}
 				else if(msg.description()=="timeout")
 				{
-					mgr->GetMB()->Show(L"登陆超时，请重试。", L"提示");
+					mgr->GetMB()->Show(L"登陆超时，请重试。", L"Prompt");
 				}
 				else if(msg.description()=="unactived")
 				{
-					mgr->GetMB()->Show(L"账号尚未激活。",L"提示");
+					mgr->GetMB()->Show(L"账号尚未激活。",L"Prompt");
 				}
 				else if(msg.description()=="db_fail")
 				{
-					mgr->GetMB()->Show(L"数据库连接出错。",L"提示");
+					mgr->GetMB()->Show(L"数据库连接出错。",L"Prompt");
 				}
 				else if(msg.description()=="no_user")
 				{
-					mgr->GetMB()->Show(L"无此用户。",L"提示");
+					mgr->GetMB()->Show(L"无此用户。",L"Prompt");
 				}
 				else
 				{
-					mgr->GetMB()->Show(L"尚未激活alpha测试或登录发生意外，请稍后再试。", L"提示");
+					mgr->GetMB()->Show(L"尚未激活alpha测试或登录发生意外，请稍后再试。", L"Prompt");
 				}
 
 				if(msg.description()!="ok")
@@ -398,24 +398,24 @@ namespace diva
 			}
 			else if(msg.msg()==divanet::AuthClient::NOTIFY_CONNECT) {
 				if(msg.description()=="ok")
-					messagePanelChatBox->addText(L"[提示] 认证服务器连接成功", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+					messagePanelChatBox->addText(L"[Prompt] 认证服务器连接成功", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 				else
-					messagePanelChatBox->addText(L"[提示] 认证服务器连接失败", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+					messagePanelChatBox->addText(L"[Prompt] 认证服务器连接失败", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 			}
 			else if(msg.msg()==divanet::AuthClient::NOTIFY_TIMEOUT) {
 				mgr->GetMB()->RegisterCallback(MessageBoxEx::Callback(&HouseUI::cb_connect_break, this));
-				mgr->GetMB()->Show(L"网络连接中断。",L"提示");
+				mgr->GetMB()->Show(L"网络连接中断。",L"Prompt");
 				disconnectServer();
 			}
 			else if(msg.msg()==divanet::AuthClient::NOTIFY_PING_RESPONSE) {
 				divanet::GPacket *packet = static_cast<divanet::GPacket*>(msg.extra());
 				uint64 sendTime = packet->getItem(2)->getUInt();
 				uint32 deltaMs = uint32((Base::TimeUtil::currentTime() - sendTime) * 1000 / Base::TimeUtil::resolution());
-				messagePanelChatBox->addText(Base::String::format("[提示] 网络延迟 %d ms", deltaMs), gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+				messagePanelChatBox->addText(Base::String::format("[Prompt] 网络延迟 %d ms", deltaMs), gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 			}
 			else if(msg.msg()==divanet::AuthClient::NOTIFY_AUTH_KICK) {
 				if(msg.description()=="system")
-					mgr->GetMB()->Show(L"你被管理员踢出游戏。", L"提示");
+					mgr->GetMB()->Show(L"你被管理员踢出游戏。", L"Prompt");
 			}
 		}
 
@@ -449,14 +449,14 @@ namespace diva
 				}
 			case divanet::ChatClient::NOTIFY_CONNECT:
 				if(msg.description()=="ok")
-					messagePanelChatBox->addText(L"[提示] 聊天服务器连接成功", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+					messagePanelChatBox->addText(L"[Prompt] 聊天服务器连接成功", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 				else if(msg.description()=="failed")
-					messagePanelChatBox->addText(L"[提示] 聊天服务器连接失败", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+					messagePanelChatBox->addText(L"[Prompt] 聊天服务器连接失败", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 				else if(msg.description()=="reconnect")
-					messagePanelChatBox->addText(L"[提示] 尝试重新连接聊天服务器...", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+					messagePanelChatBox->addText(L"[Prompt] 尝试重新连接聊天服务器...", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 				break;
 			case divanet::ChatClient::NOTIFY_TIMEOUT:
-				messagePanelChatBox->addText(L"[提示] 聊天服务器断开连接..", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+				messagePanelChatBox->addText(L"[Prompt] 聊天服务器断开连接..", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 				break;
 			}
 		}
@@ -493,14 +493,14 @@ namespace diva
 				break;
 			case divanet::SchedulerClient::NOTIFY_CONNECT:
 				if(msg.description()=="ok")
-					messagePanelChatBox->addText(L"[提示] 舞台服务器连接成功", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+					messagePanelChatBox->addText(L"[Prompt] 舞台服务器连接成功", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 				else if(msg.description()=="failed")
-					messagePanelChatBox->addText(L"[提示] 舞台服务器连接失败", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+					messagePanelChatBox->addText(L"[Prompt] 舞台服务器连接失败", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 				else if(msg.description()=="reconnect")
-					messagePanelChatBox->addText(L"[提示] 尝试重新连接舞台服务器...", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+					messagePanelChatBox->addText(L"[Prompt] 尝试重新连接舞台服务器...", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 				break;
 			case divanet::SchedulerClient::NOTIFY_TIMEOUT:
-				messagePanelChatBox->addText(L"[提示] 舞台服务器断开连接..", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+				messagePanelChatBox->addText(L"[Prompt] 舞台服务器断开连接..", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 				break;
 			}
 		}
@@ -596,9 +596,9 @@ namespace diva
 					Refresh_sPlayerList();
 
 					if (msg.description() == "leave")
-						messagePanelChatBox->addText(L"[提示] "+nickname+L"离开了舞台！", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+						messagePanelChatBox->addText(L"[Prompt] "+nickname+L"离开了舞台！", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 					else if(msg.description() == "kick")
-						messagePanelChatBox->addText(L"[提示] "+nickname+L"被踢出舞台！", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+						messagePanelChatBox->addText(L"[Prompt] "+nickname+L"被踢出舞台！", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 				} 
 				break;
 			case divanet::StageClient::NOTIFY_STAGE_START:
@@ -610,7 +610,7 @@ namespace diva
 					Base::Path songPath = MAPMGR.GetDivaOLFilePath(STAGE_CLIENT.info().songId[0].songId, static_cast<divamap::DivaMap::LevelType>(STAGE_CLIENT.info().songId[0].level)); 
 					if(!MAPMGR.isMapLeagal(STAGE_CLIENT.info().songId[0].songId, static_cast<divamap::DivaMap::LevelType>(STAGE_CLIENT.info().songId[0].level)))
 					{
-						mgr->GetMB()->Show(L"您的视听文件未通过CK大大验证！", L"提示", gcn::MessageBoxEx::TYPE_OK); 
+						mgr->GetMB()->Show(L"您的视听文件未通过CK大大验证！", L"Prompt", gcn::MessageBoxEx::TYPE_OK); 
 						STAGE_CLIENT.back();
 						return;
 					}
@@ -626,7 +626,7 @@ namespace diva
 						multiplay = new divacore::RelayPlay;
 					else
 					{
-						mgr->GetMB()->Show(L"尚不支持的游戏模式！", L"提示", gcn::MessageBoxEx::TYPE_OK); 
+						mgr->GetMB()->Show(L"尚不支持的游戏模式！", L"Prompt", gcn::MessageBoxEx::TYPE_OK); 
 						STAGE_CLIENT.back();
 						return;
 					}
@@ -636,17 +636,17 @@ namespace diva
 				}
 				else if(msg.description()=="notify")
 				{
-					mgr->GetMB()->Show(L"准备开始游戏...", L"提示", gcn::MessageBoxEx::TYPE_NONE); 
+					mgr->GetMB()->Show(L"准备开始游戏...", L"Prompt", gcn::MessageBoxEx::TYPE_NONE); 
 				}
 				else if(msg.description()=="failed")
 				{
 					Base::String info = ((divanet::GPacket*)msg.extra())->getItem(2)->getString();
 					if(info=="noselect")
-						mgr->GetMB()->Show(L"开始失败，没有选择歌曲", L"提示", gcn::MessageBoxEx::TYPE_OK); 
+						mgr->GetMB()->Show(L"开始失败，没有选择歌曲", L"Prompt", gcn::MessageBoxEx::TYPE_OK); 
 					else
 					{
 						if (STAGE_CLIENT.owner())
-							mgr->GetMB()->Show(L"开始失败，没有准备或非法队伍人数", L"提示", gcn::MessageBoxEx::TYPE_OK); 
+							mgr->GetMB()->Show(L"开始失败，没有准备或非法队伍人数", L"Prompt", gcn::MessageBoxEx::TYPE_OK); 
 						else
 						{
 							if(mgr->GetMB()->isTopWindow())
@@ -693,7 +693,7 @@ namespace diva
 				//Refresh_SongList();
 				BeginSongListAnimation();
 
-				messagePanelChatBox->addText(L"[提示] 更新房间信息", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+				messagePanelChatBox->addText(L"[Prompt] 更新房间信息", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 				if (!STAGE_CLIENT.owner())
 					selectMusicButton->setEnabled(!STAGE_CLIENT.isReady());
 				break;
@@ -721,12 +721,12 @@ namespace diva
 					if(STAGE_CLIENT.isReady())
 						STAGE_CLIENT.unready();
 				}
-				messagePanelChatBox->addText(L"[提示] 房主更改了歌曲列表", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+				messagePanelChatBox->addText(L"[Prompt] 房主更改了歌曲列表", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 				break;
 			case divanet::StageClient::NOTIFY_REFRESH_SONG_UI:
 				//Refresh_SongList();
 				BeginSongListAnimation();
-				messagePanelChatBox->addText(L"[提示] 歌曲列表刷新", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));				
+				messagePanelChatBox->addText(L"[Prompt] 歌曲列表刷新", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));				
 				break;
 			case divanet::StageClient::NOTIFY_UPDATE_HOOK:
 				MAPMGR.SelectedMode_Set(STAGE_CLIENT.info().hooks);
@@ -737,17 +737,17 @@ namespace diva
 					if(STAGE_CLIENT.isReady())
 						STAGE_CLIENT.unready();
 				}
-				messagePanelChatBox->addText(L"[提示] 房主更改了游戏模式", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+				messagePanelChatBox->addText(L"[Prompt] 房主更改了游戏模式", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 				break;
 			case divanet::StageClient::NOTIFY_STAGE_LEAVE_RESPONSE:
 				break;
 			case divanet::StageClient::NOTIFY_CONNECT:
 				if(msg.description()=="ok")
-					messagePanelChatBox->addText(L"[提示] 游戏服务器连接成功", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+					messagePanelChatBox->addText(L"[Prompt] 游戏服务器连接成功", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 				else if(msg.description()=="failed")
 					messagePanelChatBox->addText(L"[警告] 游戏服务器连接失败", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"warning"]));
 				else if(msg.description()=="reconnect")
-					messagePanelChatBox->addText(L"[提示] 尝试重新连接游戏服务器...", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+					messagePanelChatBox->addText(L"[Prompt] 尝试重新连接游戏服务器...", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 				break;
 			case divanet::StageClient::NOTIFY_TIMEOUT:
 				messagePanelChatBox->addText(L"[警告] 游戏服务器断开连接..", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"warning"]));
@@ -757,7 +757,7 @@ namespace diva
 			case divanet::StageClient::NOTIFY_STAGE_RETURN:
 				//if(mgr->GetMB()->isTopWindow())
 				//	mgr->CloseTopWindow();
-				//mgr->GetMB()->Show(L"开始游戏失败", L"提示", gcn::MessageBoxEx::TYPE_OK);
+				//mgr->GetMB()->Show(L"开始游戏失败", L"Prompt", gcn::MessageBoxEx::TYPE_OK);
 				if(msg.description() == "start_failed")
 					messagePanelChatBox->addText(L"[警告] 开始游戏失败!", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"warning"]));
 				else if(msg.description() == "game_over")
@@ -765,13 +765,13 @@ namespace diva
 					if(STAGE_CLIENT.state() == divanet::StageClient::GAME)
 					{
 						if(STAGE_CLIENT.getPlayerNum() > 1)
-							messagePanelChatBox->addText(L"[提示] 其他玩家尚未退出游戏，请稍等...", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+							messagePanelChatBox->addText(L"[Prompt] 其他玩家尚未退出游戏，请稍等...", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 						setState(STATE_PLAYING);
 					}
 				}
 				break;
 			case divanet::StageClient::NOTIFY_GAME_OVER:
-				messagePanelChatBox->addText(L"[提示] 游戏结束!", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+				messagePanelChatBox->addText(L"[Prompt] 游戏结束!", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 				if(state==STATE_PLAYING)
 					setState(STATE_STAGE);
 				break;
@@ -1134,18 +1134,18 @@ namespace diva
 							else
 							{
 								if (POMELO_STAGE_PEER->owner()) {
-									mgr->GetMB()->Show(L"开始失败，没有准备或非法队伍人数", L"提示", gcn::MessageBoxEx::TYPE_OK); 
+									mgr->GetMB()->Show(L"Failed to start game.", L"Prompt", gcn::MessageBoxEx::TYPE_OK); 
 								}
 								else
 								{
-									messagePanelChatBox->addText(L"[警告] 开始失败，没有准备或非法队伍人数", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"warning"]));
+									messagePanelChatBox->addText(L"[System] Failed to start game.", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"warning"]));
 								}
 							}
 						}
 					}
 				case divapomelo::PUSH_STAGE_START:
 					if(status == 1) {
-						//mgr->GetMB()->Show(Base::String("开始失败，服务器错误:" + msg.asString()), L"提示", gcn::MessageBoxEx::TYPE_OK); 
+						//mgr->GetMB()->Show(Base::String("开始失败，服务器错误:" + msg.asString()), L"Prompt", gcn::MessageBoxEx::TYPE_OK); 
 					}
 					else if(status != 0) {
 						mgr->GetMB()->Show(Base::String("Unexpected error occred when starting the game."), L"Prompt", gcn::MessageBoxEx::TYPE_OK); 
@@ -1156,15 +1156,15 @@ namespace diva
 						_onRefreshStageInfo();
 						//if(mgr->GetMB()->isTopWindow())
 						//	mgr->CloseTopWindow();
-						//mgr->GetMB()->Show(L"开始游戏失败", L"提示", gcn::MessageBoxEx::TYPE_OK);
+						//mgr->GetMB()->Show(L"开始游戏失败", L"Prompt", gcn::MessageBoxEx::TYPE_OK);
 						if(msg["phase"] == "loading") {
-							messagePanelChatBox->addText(L"[警告] 开始游戏失败!", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"warning"]));
+							messagePanelChatBox->addText(L"[System] Failed to start game.", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"warning"]));
 							if(state==STATE_PLAYING)
 								setState(STATE_STAGE);
 						}
 						else
 						{
-							messagePanelChatBox->addText(L"[提示] 游戏结束!", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+							messagePanelChatBox->addText(L"[Prompt] Game over.", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 							if(state==STATE_PLAYING)
 								setState(STATE_STAGE);
 						}
@@ -1174,7 +1174,7 @@ namespace diva
 				case divapomelo::PUSH_GAME_BACK:
 					if (status == 0) {
 						if(!msg["over"].isBool()) {
-							messagePanelChatBox->addText(L"[提示] 其他玩家尚未退出游戏，请稍等...", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+							messagePanelChatBox->addText(L"[Prompt] Waiting for players to leave the game...", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 						}
 					}
 					break;
@@ -1217,7 +1217,7 @@ namespace diva
 			//Refresh_SongList();
 			BeginSongListAnimation();
 
-			messagePanelChatBox->addText(L"[提示] 更新房间信息", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+			messagePanelChatBox->addText(L"[Prompt] Updated room information", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 			if (!POMELO_STAGE_PEER->owner())
 				selectMusicButton->setEnabled(!POMELO_STAGE_PEER->getIsReady());
 		}
@@ -1322,10 +1322,10 @@ namespace diva
 		void HouseUI::start_game() {
 #if defined(DIVA_USE_GNET)
 			if(STAGE_CLIENT.start())
-				mgr->GetMB()->Show(L"准备开始游戏...", L"提示", gcn::MessageBoxEx::TYPE_NONE); 
+				mgr->GetMB()->Show(L"准备开始游戏...", L"Prompt", gcn::MessageBoxEx::TYPE_NONE); 
 #else
 			if(POMELO_STAGE_PEER->start())
-				mgr->GetMB()->Show(L"准备开始游戏...", L"提示", gcn::MessageBoxEx::TYPE_NONE); 
+				mgr->GetMB()->Show(L"Starting game...", L"Prompt", gcn::MessageBoxEx::TYPE_NONE); 
 #endif
 		}
 		void HouseUI::leave_stage() {
@@ -1390,13 +1390,13 @@ namespace diva
 				case divamap::DivaMapEventMessage::PrepareMapList :
 					if (t.error)
 					{
-						messagePanelChatBox->addText(L"[提示] 与歌曲列表服务器连接发生错误。", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+						messagePanelChatBox->addText(L"[Prompt] Unable to connect to song list server.", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 						//throw "fuck it!";
 						break;
 					}
 					if (t.finish)
 					{
-						messagePanelChatBox->addText(L"[提示] 与歌曲列表服务器连接成功，歌曲列表已更新。", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+						messagePanelChatBox->addText(L"[Prompt] Updated song list.", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 						selectMusicButton->setEnabled(true);
 						break;
 					}
@@ -1404,11 +1404,11 @@ namespace diva
 				case divamap::DivaMapEventMessage::UnpackMapDataFile :
 					if (t.error)
 					{
-						messagePanelChatBox->addText(L"[提示] 您的歌曲【" + MAPS[t.effectedMapID].header.name + L"】下载发生错误。", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+						messagePanelChatBox->addText(L"[Prompt] Song [" + MAPS[t.effectedMapID].header.name + L"] could not download.", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 						break;
 					}
 					if (t.finish)
-						messagePanelChatBox->addText(L"[提示] 您的歌曲【" + MAPS[t.effectedMapID].header.name + L"】已经下载完成。", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+						messagePanelChatBox->addText(L"[Prompt] Song [" + MAPS[t.effectedMapID].header.name + L"] downloaded.", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 					break;
 				}
 				q->pop_front();
@@ -2110,10 +2110,10 @@ namespace diva
 			{
 				Network::RoomInfo info;
 				info.maxPlayerNum = 10;
-				info.ownerNickname = L"拥有者";
+				info.ownerNickname = L"Host";
 				info.playerNum = i%8 + 1;
-				info.selectedSong.push_back(L"第一首歌");
-				info.stageName = L"这里是舞台" + iToWS(i);
+				info.selectedSong.push_back(L"Song");
+				info.stageName = L"Stage" + iToWS(i);
 				roomListView->pushRoomItem(info);
 				//list->pushItem();
 			}
@@ -2209,7 +2209,7 @@ namespace diva
 				if (msgSendId != -1)
 					messageToSomeOne->setText(L"To " + text);
 				else
-					messageToSomeOne->setText(L"尚未选择");
+					messageToSomeOne->setText(L"None Selected");
 			}
 			else if (ch == CHANNEL_STAGE)
 			{
@@ -2222,7 +2222,7 @@ namespace diva
 		{
 			PlayerInfo pf = PlayerManager::Instance()->GetHostInfo();
 			wchar_t temp[200];
-			_swprintf(temp, L"昵称：%s\nID：%d", pf.nickname.c_str(), pf.id);
+			_swprintf(temp, L"Nickname: %s\nUserID: %d", pf.nickname.c_str(), pf.id);
 			hostInfoLabel->setText(temp);
 		}
 
@@ -2396,7 +2396,7 @@ namespace diva
 			SuperButtonEx* confirmButton = Helper::CreateButton(tv[L"DefaultButton"]);
 			PointEx pos = Helper::GetPoint(tv[L"confirmBtnPos"]);
 			confirmButton->setPosition(pos.x, pos.y);
-			confirmButton->setText(L"确定");
+			confirmButton->setText(L"Confirm");
 			confirmButton->addMouseListener(new LoginButton_MouseListener());
 			win->add(confirmButton);
 			settingConfirmBtn = confirmButton;
@@ -2404,7 +2404,7 @@ namespace diva
 			SuperButtonEx* cancelButton = Helper::CreateButton(tv[L"DefaultButton"]);
 			pos = Helper::GetPoint(tv[L"cancelBtnPos"]);
 			cancelButton->setPosition(pos.x, pos.y);
-			cancelButton->setText(L"取消");
+			cancelButton->setText(L"Cancel");
 			cancelButton->addMouseListener(new LoginButton_MouseListener());
 			win->add(cancelButton);
 			settingCancelBtn = cancelButton;
@@ -2801,7 +2801,7 @@ namespace diva
 #endif
 			if(!connectServer())
 			{
-				mgr->GetMB()->Show(L"Unable toconnect to server.", L"Error", gcn::MessageBoxEx::TYPE_OK);
+				mgr->GetMB()->Show(L"Unable to connect to server.", L"Error", gcn::MessageBoxEx::TYPE_OK);
 				disconnectServer();
 				return;
 			}
@@ -3134,7 +3134,7 @@ namespace diva
                             if (msgSendId != -1)
                                     CHAT_CLIENT.sendTo(Base::String::any2string<int>(msgSendId), L"#P#[私聊] " + PlayerManager::Instance()->GetHostInfo().nickname + L"：" + messagePanelInputBox->getText());
                             else
-                                    messagePanelChatBox->addText(L"[提示] 请先选择您要私聊的对象", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+                                    messagePanelChatBox->addText(L"[Prompt] 请先选择您要私聊的对象", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
                     }
                     else if (msgChannelState == CHANNEL_STAGE)
                     {
@@ -3278,7 +3278,7 @@ namespace diva
 
 		void NotSupportInAlpha_MouseListener::mouseClicked(gcn::MouseEvent& mouseEvent)
 		{
-			HouseUI::Instance()->mgr->GetMB()->Show(L"Alpha测试中不包含此功能。", L"提示", gcn::MessageBoxEx::TYPE_OK);
+			HouseUI::Instance()->mgr->GetMB()->Show(L"This feature is not ready.", L"Prompt", gcn::MessageBoxEx::TYPE_OK);
 		}
 
 		void NotSupportInAlpha_MouseListener::mousePressed(gcn::MouseEvent& mouseEvent)

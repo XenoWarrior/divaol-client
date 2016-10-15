@@ -1,4 +1,4 @@
-#include "divapomelo/diva/Client.h"
+ï»¿#include "divapomelo/diva/Client.h"
 
 #include "MusicUI.h"
 #include "SoraResourceFile.h"
@@ -346,7 +346,7 @@ namespace diva
 			{
 				gcn::Helper::ReadJsonFromFile(L"config/uiconfig/music/update_song_list_btn.json", tv);
 				gcn::SuperButtonEx* updateSongListBtn = Helper::CreateButton(tv);
-				updateSongListBtn->setText(L"¸üÐÂÁÐ±í");
+				updateSongListBtn->setText(L"Update List");
 				updateSongListBtn->addMouseListener(new UpdateSongList_MouseListener());
 				top->add(updateSongListBtn);
 			}
@@ -363,7 +363,7 @@ namespace diva
 
 		void MusicUI::UpdateSongList()
 		{
-						// ------
+			// ------
 			divamap::DivaMap tMap;
 			tMap.levels[tMap.Easy];
 			tMap.levels[tMap.Normal];
@@ -371,7 +371,7 @@ namespace diva
 			tMap.levels[tMap.Extra];
 			tMap.levels[tMap.Die];
 			//
-			
+
 			for (int i = 0; i < songListOrigItems.size(); i++)
 				delete songListOrigItems[i];
 			songListOrigItems.clear();
@@ -382,17 +382,17 @@ namespace diva
 			for (std::map<int, DivaMap>::iterator i = MAPS.begin(); i != MAPS.end(); i++)
 				orig.push_back(i->second);
 			std::sort(orig.begin(), orig.end(), MapCmp);
-			
+
 			gcn::Image* image = gcn::Image::load("res/UI1.png");
 			gcn::Image* notDI = gcn::Image::load("res/download.png");
 			songListOrigItems.push_back(new SongListItem(image, tMap, SongListItem::RANDOM));
-			for (int i=0; i<orig.size(); i++)
+			for (int i = 0; i<orig.size(); i++)
 				songListOrigItems.push_back(new SongListItem(image, orig[i], SongListItem::SONG, NULL, notDI));
 			songListBox->setItems(songListOrigItems);
 
 			state = SONGLIST_ORIG;
 
-			for (int i=0; i<orig.size(); i++)
+			for (int i = 0; i<orig.size(); i++)
 				for (std::vector<std::wstring>::const_iterator j = orig[i].header.artists.cbegin(); j != orig[i].header.artists.cend(); j++)
 				{
 					if (artistListItems.find(*j) == artistListItems.end())
@@ -420,7 +420,7 @@ namespace diva
 		{
 			//if (sprite)
 			//	delete sprite;
-			for (int i=0; i<songListOrigItems.size(); i++)
+			for (int i = 0; i<songListOrigItems.size(); i++)
 				delete songListOrigItems[i];
 			for (std::map<std::wstring, ListItemEx*>::iterator i = artistListItems.begin(); i != artistListItems.end(); i++)
 				delete (i->second);
@@ -433,7 +433,7 @@ namespace diva
 		void MusicUI::refreshSelectedSongList()
 		{
 			selectedListBox->clearItems();
-			for (int i=0; i<SELECTEDMAPS.size(); i++)
+			for (int i = 0; i<SELECTEDMAPS.size(); i++)
 			{
 				int index = songListBox->getIndexByMapId(SELECTEDMAPS[i].id);
 				if (index == -1)
@@ -479,7 +479,7 @@ namespace diva
 			//		break;
 			//	case DIVA_NET_STC_LOBBY_START:
 			//		//////////////////////////////////////////////////////////////////////////
-			//		// Í¬ÑùÎÒ¼ÙÉèÎ²°ÍÉÏÓÐint±íÊ¾ÄÑÒ×¶È012 EASY NORMAL HARD
+			//		// åŒæ ·æˆ‘å‡è®¾å°¾å·´ä¸Šæœ‰intè¡¨ç¤ºéš¾æ˜“åº¦012 EASY NORMAL HARD
 			//		gameStartingMode = pack.readInt32();
 			//		gameStartingMyPos = pack.readInt32();
 			//		gameStartingMapId = pack.readInt32();
@@ -489,7 +489,7 @@ namespace diva
 			//		//////////////////////////////////////////////////////////////////////////
 			//	case DIVA_NET_STC_LOBBY_LOGIN:
 			//		//////////////////////////////////////////////////////////////////////////
-			//		// Î´Íê³É£¬loginÐÅÏ¢²»×ã
+			//		// æœªå®Œæˆï¼Œloginä¿¡æ¯ä¸è¶³
 			//		//////////////////////////////////////////////////////////////////////////
 			//		{
 			//			int pos = pack.readInt32();
@@ -537,7 +537,7 @@ namespace diva
 				return;
 			}
 			SongListItem* item = (SongListItem*)songListBox->getItems()[index];
-			if ( item->hasListening() )
+			if (item->hasListening())
 			{
 				playTimer.reset();
 				sora::SoraBGMManager::Instance()->stop(false);
@@ -549,7 +549,7 @@ namespace diva
 				MAPMGR.PrepareDivaMapAudioPreview(item->getMapInfo().id);
 			}
 		}
-		
+
 		void MusicUI::refreshRankingList(bool topRank, bool myRank)
 		{
 			if (songListBox->getSelectedIndex() == -1)
@@ -557,11 +557,11 @@ namespace diva
 			SongListItem* item = (SongListItem*)songListBox->getItem(songListBox->getSelectedIndex());
 
 			// set loading state to all the rankList item
-			if(topRank)
-				for (int i = 0; i < rankingList->getItemCount()-1; i++)
+			if (topRank)
+				for (int i = 0; i < rankingList->getItemCount() - 1; i++)
 					((RankingListItem*)rankingList->getItem(i))->SetLoading(true);
-			if(myRank)
-				((RankingListItem*)rankingList->getItem(rankingList->getItemCount()-1))->SetLoading(true);
+			if (myRank)
+				((RankingListItem*)rankingList->getItem(rankingList->getItemCount() - 1))->SetLoading(true);
 
 			if (topRank)
 			{
@@ -604,41 +604,41 @@ namespace diva
 				const divamap::DivaMapEventMessage &t = (*((*q).begin()));
 				switch (t.eventType)
 				{
-				case divamap::DivaMapEventMessage::PrepareMapList :
+				case divamap::DivaMapEventMessage::PrepareMapList:
 					if (t.error)
 					{
-						//messagePanelChatBox->addText(L"[ÌáÊ¾] Óë¸èÇúÁÐ±í·þÎñÆ÷Á¬½Ó·¢Éú´íÎó¡£", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+						//messagePanelChatBox->addText(L"[æç¤º] ä¸Žæ­Œæ›²åˆ—è¡¨æœåŠ¡å™¨è¿žæŽ¥å‘ç”Ÿé”™è¯¯ã€‚", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 						//throw "fuck it!";
-						mgr->GetMB()->Show(L"¸üÐÂ¸èÇúÁÐ±í·¢Éú´íÎó£¬¸üÐÂÊ§°Ü¡£");
+						mgr->GetMB()->Show(L"Could not update song list.");
 						break;
 					}
 					if (t.finish)
 					{
-						//messagePanelChatBox->addText(L"[ÌáÊ¾] Óë¸èÇúÁÐ±í·þÎñÆ÷Á¬½Ó³É¹¦£¬¸èÇúÁÐ±íÒÑ¸üÐÂ¡£", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+						//messagePanelChatBox->addText(L"[æç¤º] ä¸Žæ­Œæ›²åˆ—è¡¨æœåŠ¡å™¨è¿žæŽ¥æˆåŠŸï¼Œæ­Œæ›²åˆ—è¡¨å·²æ›´æ–°ã€‚", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 						//selectMusicButton->setEnabled(true);
 						UpdateSongList();
-						mgr->GetMB()->Show(L"¸üÐÂ¸èÇúÁÐ±í³É¹¦¡£");
-					
+						mgr->GetMB()->Show(L"Song list has updated.");
+
 						break;
 					}
 					break;
 				case divamap::DivaMapEventMessage::PrepareRecordByRank:
 					if (t.error)
 					{
-						//mgr->GetMB()->Show(L"ÏÂÔØËõÂÔÍ¼ÎÄ¼þ³ö´í¡£¸èÇúÃû£º" + MAPS[t.effectedMapID].header.name);
+						//mgr->GetMB()->Show(L"ä¸‹è½½ç¼©ç•¥å›¾æ–‡ä»¶å‡ºé”™ã€‚æ­Œæ›²åï¼š" + MAPS[t.effectedMapID].header.name);
 						break;
 					}
 					if (!t.error && t.finish)
 					{
 						WJson::Reader reader;
 						WJson::Value tv;
-						reader.parse( s2ws(std::string(t.additionalMessage)), tv);
+						reader.parse(s2ws(std::string(t.additionalMessage)), tv);
 
 						int selectedIndex = songListBox->getSelectedIndex();
-						if(selectedIndex < 0 || selectedIndex >= songListBox->getItemCount())
+						if (selectedIndex < 0 || selectedIndex >= songListBox->getItemCount())
 							break;
-						SongListItem *item = (SongListItem*) songListBox->getItem(selectedIndex);
-						if (t.effectedMapID !=  item->getMapInfo().id)
+						SongListItem *item = (SongListItem*)songListBox->getItem(selectedIndex);
+						if (t.effectedMapID != item->getMapInfo().id)
 							break;
 						if (t.effectedMapLevel != item->getMapInfo().getLevel(item->getDifIndex()))
 							break;
@@ -670,11 +670,11 @@ namespace diva
 							((RankingListItem*)rankingList->getItem(i))->SetRanking(t[L"rank"].asInt());
 							((RankingListItem*)rankingList->getItem(i))->SetNull(0);
 						}
-						for (int i = l; i < rankingList->getItemCount() -1; i++)
+						for (int i = l; i < rankingList->getItemCount() - 1; i++)
 							((RankingListItem*)rankingList->getItem(i))->SetNull(1);
 
 						// set isLoading to false
-						for (int i = 0; i < rankingList->getItemCount() -1; i++)
+						for (int i = 0; i < rankingList->getItemCount() - 1; i++)
 							((RankingListItem*)rankingList->getItem(i))->SetLoading(false);
 						//std::string fuck = t.additionalMessage;
 					}
@@ -682,7 +682,7 @@ namespace diva
 				case divamap::DivaMapEventMessage::PrepareRecordByUser:
 					if (t.error)
 					{
-						//mgr->GetMB()->Show(L"ÏÂÔØËõÂÔÍ¼ÎÄ¼þ³ö´í¡£¸èÇúÃû£º" + MAPS[t.effectedMapID].header.name);
+						//mgr->GetMB()->Show(L"ä¸‹è½½ç¼©ç•¥å›¾æ–‡ä»¶å‡ºé”™ã€‚æ­Œæ›²åï¼š" + MAPS[t.effectedMapID].header.name);
 						//q->pop_front();
 						break;
 					}
@@ -694,10 +694,10 @@ namespace diva
 						//if (tv[L"error"] != "E_")
 
 						int selectedIndex = songListBox->getSelectedIndex();
-						if(selectedIndex < 0 || selectedIndex >= songListBox->getItemCount())
+						if (selectedIndex < 0 || selectedIndex >= songListBox->getItemCount())
 							break;
-						SongListItem *item = (SongListItem*) songListBox->getItem(selectedIndex);
-						if (t.effectedMapID !=  item->getMapInfo().id)
+						SongListItem *item = (SongListItem*)songListBox->getItem(selectedIndex);
+						if (t.effectedMapID != item->getMapInfo().id)
 							break;
 						if (t.effectedMapLevel != item->getMapInfo().getLevel(item->getDifIndex()))
 							break;
@@ -712,7 +712,7 @@ namespace diva
 						{
 							WJson::Value addData;
 							reader.parse(tv[L"add_data"].asString(), addData);
-							
+
 							// get hooks, new server will use string instead
 							int64 hooks = 0;
 							if (addData[L"hooks"].isString())
@@ -738,10 +738,10 @@ namespace diva
 						((RankingListItem*)rankingList->getItem(rankingList->getMaxItem() - 1))->SetLoading(false);
 					}
 					break;
-				case divamap::DivaMapEventMessage::PrepareThumbFile :
+				case divamap::DivaMapEventMessage::PrepareThumbFile:
 					if (t.error)
 					{
-						mgr->GetMB()->Show(L"ÏÂÔØËõÂÔÍ¼ÎÄ¼þ³ö´í¡£¸èÇúÃû£º" + MAPS[t.effectedMapID].header.name);
+						mgr->GetMB()->Show(L"Error downloading thumbnail image: " + MAPS[t.effectedMapID].header.name);
 						return;
 					}
 					if (!t.error && t.finish)
@@ -749,8 +749,8 @@ namespace diva
 						//selectMusicButton->setEnabled(true);
 						int index = songListBox->getIndexByMapId(t.effectedMapID);
 						//((SongListItem*)songListBox->getItems()[index])->setPreview(MAPMGR.GetThumbFilePath(t.effectedMapID));
-						background->display(MAPMGR.GetThumbFilePath(t.effectedMapID), gcn::Rectangle(0,0,0,0), true);
-						thumbImage->load(MAPMGR.GetThumbFilePath(t.effectedMapID), gcn::Rectangle(0,0,0,0), true);
+						background->display(MAPMGR.GetThumbFilePath(t.effectedMapID), gcn::Rectangle(0, 0, 0, 0), true);
+						thumbImage->load(MAPMGR.GetThumbFilePath(t.effectedMapID), gcn::Rectangle(0, 0, 0, 0), true);
 					}
 					else
 						throw "fuck it!";
@@ -759,7 +759,7 @@ namespace diva
 				case divamap::DivaMapEventMessage::PrepareSmallThumbFile:
 					if (t.error)
 					{
-						mgr->GetMB()->Show(L"ÏÂÔØÐ¡ËõÂÔÍ¼ÎÄ¼þ³ö´í¡£¸èÇúÃû£º" + MAPS[t.effectedMapID].header.name);
+						mgr->GetMB()->Show(L"Error downloading thumbnail image: " + MAPS[t.effectedMapID].header.name);
 						return;
 					}
 					if (!t.error && t.finish)
@@ -772,10 +772,10 @@ namespace diva
 						throw "fuck it!";
 
 					break;
-				case divamap::DivaMapEventMessage::PrepareAudioPreviewFile :
+				case divamap::DivaMapEventMessage::PrepareAudioPreviewFile:
 					if (t.error)
 					{
-						mgr->GetMB()->Show(L"ÏÂÔØÊÔÌýÎÄ¼þ³ö´í¡£¸èÇúÃû£º" + MAPS[t.effectedMapID].header.name);
+						mgr->GetMB()->Show(L"Error downloading preview file: " + MAPS[t.effectedMapID].header.name);
 						break;
 					}
 					if (!t.error && t.finish)
@@ -788,20 +788,20 @@ namespace diva
 					else
 						throw "fuck it!";
 					break;
-				case divamap::DivaMapEventMessage::PrepareMapDataFile :
+				case divamap::DivaMapEventMessage::PrepareMapDataFile:
 					if (t.error)
 					{
-						mgr->GetMB()->Show(L"ÏÂÔØ¸èÇúÎÄ¼þ³ö´í¡£¸èÇúÃû£º" + MAPS[t.effectedMapID].header.name);
+						mgr->GetMB()->Show(L"Could not download song: " + MAPS[t.effectedMapID].header.name);
 						break;
 					}
 					if (t.finish)
 					{
 						int index = songListBox->getIndexByMapId(t.effectedMapID);
 						//((SongListItem*)songListBox->getItem(index))->setDownloadFinished(true);
-						if(index >= 0) {
+						if (index >= 0) {
 							((SongListItem*)songListBox->getItem(index))->setDownloadProgress(MAPMGR.GetMapDownloadProgress(t.effectedMapID));
-							if(index == songListBox->getSelectedIndex()) {
-								songSelectButton->setText(L"ÏÂÔØÖÐ...");
+							if (index == songListBox->getSelectedIndex()) {
+								songSelectButton->setText(L"Downloading...");
 								songSelectButton->setEnabled(false);
 							}
 						}
@@ -809,31 +809,31 @@ namespace diva
 					else
 					{
 						int index = songListBox->getIndexByMapId(t.effectedMapID);
-						if(index >= 0) {
+						if (index >= 0) {
 							((SongListItem*)songListBox->getItem(index))->setDownloadProgress(MAPMGR.GetMapDownloadProgress(t.effectedMapID));
-							if(index == songListBox->getSelectedIndex()) {
-								songSelectButton->setText(L"ÏÂÔØÖÐ...");
+							if (index == songListBox->getSelectedIndex()) {
+								songSelectButton->setText(L"Downloading...");
 								songSelectButton->setEnabled(false);
 							}
 						}
 					}
 					break;
-				case divamap::DivaMapEventMessage::UnpackMapDataFile :
+				case divamap::DivaMapEventMessage::UnpackMapDataFile:
 					if (t.error)
 					{
-						mgr->GetMB()->Show(L"½âÑ¹¸èÇúÎÄ¼þ³ö´í¡£¸èÇúÃû£º" + MAPS[t.effectedMapID].header.name);
+						mgr->GetMB()->Show(L"Song is still compressed: " + MAPS[t.effectedMapID].header.name);
 						break;
 					}
 					if (t.finish)
 					{
 						int index = songListBox->getIndexByMapId(t.effectedMapID);
-						if(index >= 0) {
+						if (index >= 0) {
 							((SongListItem*)songListBox->getItem(index))->setDownloadFinished(true);
 							((SongListItem*)songListBox->getItem(index))->setDownloadProgress(1.0);
 
-							if(songListBox->getSelectedIndex() == index)
+							if (songListBox->getSelectedIndex() == index)
 							{
-								songSelectButton->setText(L"Ñ¡Ôñ¸èÇú");
+								songSelectButton->setText(L"Select a Song");
 								songSelectButton->setEnabled(true);
 							}
 						}
@@ -841,7 +841,7 @@ namespace diva
 					else
 					{
 						int index = songListBox->getIndexByMapId(t.effectedMapID);
-						if(index >= 0)
+						if (index >= 0)
 							((SongListItem*)songListBox->getItem(index))->setDownloadProgress(MAPMGR.GetMapDownloadProgress(t.effectedMapID));
 					}
 					break;
@@ -856,7 +856,7 @@ namespace diva
 			{
 				//songListBox->getItems()[index
 				int totItem = songListBox->getDisplayedItems();
-				for (int i=0; i < totItem; i++)
+				for (int i = 0; i < totItem; i++)
 				{
 					SongListItem* t = (SongListItem*)songListBox->getItems()[songListBox->getFirstIndex() + i];
 					if (!t->hasPreview())
@@ -890,7 +890,7 @@ namespace diva
 
 			if (tv.size() == 0)
 				return -1;
-			
+
 			return tv[Base::Random::RandomInt(0, tv.size())];
 		}
 
@@ -912,7 +912,7 @@ namespace diva
 				//sora::SoraBGMManager::Instance()->stop(false);
 				countStarted = false;
 
-				songSelectButton->setText(L"²é¿´ÒÕÊõ¼Ò");
+				songSelectButton->setText(L"View Artist");
 				songSelectButton->setEnabled(true);
 				return;
 			}
@@ -920,10 +920,10 @@ namespace diva
 			SongListItem* item = (SongListItem*)songListBox->getItems()[index];
 
 			// refresh select button
-			if(item->getDownloadFinished() || item->getLook() == SongListItem::RANDOM)
-				songSelectButton->setText(L"Ñ¡Ôñ¸èÇú");
+			if (item->getDownloadFinished() || item->getLook() == SongListItem::RANDOM)
+				songSelectButton->setText(L"Select");
 			else
-				songSelectButton->setText(L"ÏÂÔØ¸èÇú");
+				songSelectButton->setText(L"Download");
 			songSelectButton->setEnabled(true);
 
 			if (item->getLook() == SongListItem::RANDOM)
@@ -934,7 +934,7 @@ namespace diva
 				countStarted = false;
 				return;
 			}
-		
+
 			// DISPLAY SONGLIST
 			if (item->hasPreview())
 			{
@@ -960,13 +960,13 @@ namespace diva
 		{
 			int index = songListBox->getSelectedIndex();
 
-			if(index >= 0)
+			if (index >= 0)
 				SongListItemDoubleClicked(index);
 		}
 
 		void MusicUI::ClearSongSelectButton()
 		{
-			if(songSelectButton) {
+			if (songSelectButton) {
 				songSelectButton->setText(L"");
 				songSelectButton->setEnabled(false);
 			}
@@ -978,12 +978,12 @@ namespace diva
 			{
 				std::wstring des = ((SongListItem*)songListBox->getItems()[index])->getMapInfo().header.artists[0];
 				songListBox->clearItems();
-		
+
 				songListBox->pushItem(songListOrigItems[0]);
-				for (int i=0; i<songListOrigItems.size(); i++)
+				for (int i = 0; i<songListOrigItems.size(); i++)
 				{
 					const std::vector<std::wstring>& p = ((SongListItem*)songListOrigItems[i])->getMapInfo().header.artists;
-					for (int j=0; j<p.size(); j++)
+					for (int j = 0; j<p.size(); j++)
 					{
 						if (p[j] == des)
 						{
@@ -1003,13 +1003,13 @@ namespace diva
 
 			if (selectedListBox->getItemCount() >= 5)
 				return;
-		
+
 			if (index == 0)
 			{
 				int t = GetRandomSong((divamap::DivaMap::LevelType)((SongListItem*)songListBox->getItem(0))->getDifIndex());
 				if (t == -1)
 				{
-					mgr->GetMB()->Show(L"Ã»ÓÐÒÑÏÂÔØµÄµ±Ç°ÄÑ¶ÈµÄ¸èÇú");
+					mgr->GetMB()->Show(L"The difficult selected has not been downloaded.");
 					return;
 				}
 				SongListItem* item = (SongListItem*)songListBox->getItems()[t];
@@ -1024,7 +1024,7 @@ namespace diva
 				else
 				{
 					MAPMGR.PrepareDivaMapData(item->getMapInfo().id);
-					songSelectButton->setText(L"ÏÂÔØÖÐ...");
+					songSelectButton->setText(L"Downloading...");
 					songSelectButton->setEnabled(false);
 				}
 				AdjustStartButton();
@@ -1045,13 +1045,13 @@ namespace diva
 
 			// if still players playing
 			DivaRoomInfo info = playerList->getRoomInfo();
-			for (int i=0; i<info.players.size(); i++)
+			for (int i = 0; i<info.players.size(); i++)
 				if (info.players[i].isVoid && info.players[i].isPlaying)
 				{
 					startButton->setEnabled(false);
 					return;
 				}
-		
+
 			// if select double player but first song isn't double player
 			if (gameMode == 2 && selectedListBox->getSong(0).mapInfo.header.Couple != divamap::DivaMapHeader::Couple)
 			{
@@ -1063,10 +1063,10 @@ namespace diva
 			if (gameMode == 2)
 			{
 				int t = 1;
-				for (int i=0; i<info.players.size(); i++)
+				for (int i = 0; i<info.players.size(); i++)
 					if (!info.players[i].isHost && info.players[i].isReady)
 						t++;
-				if (t&1)
+				if (t & 1)
 				{
 					startButton->setEnabled(false);
 					return;
@@ -1077,7 +1077,7 @@ namespace diva
 			if (gameMode == 1)
 			{
 				int t = 1;
-				for (int i=0; i<info.players.size(); i++)
+				for (int i = 0; i<info.players.size(); i++)
 					if (!info.players[i].isHost && info.players[i].isReady)
 						t++;
 				if (t == 1)
@@ -1096,7 +1096,7 @@ namespace diva
 			mgr->GetMB()->RegisterCallback();
 			if (mgr->GetMB()->GetResult() == gcn::MessageBoxEx::RES_YES)
 			{
-				mgr->GetMB()->Show(L"ÕýÔÚ¸üÐÂ¸èÇúÁÐ±í£¬ÇëµÈ´ý¡­¡­", L"ÌáÊ¾", gcn::MessageBoxEx::TYPE_NONE);
+				mgr->GetMB()->Show(L"Updating song list...", L"Prompt", gcn::MessageBoxEx::TYPE_NONE);
 				MAPMGR.PrepareDivaMapListInfo();
 			}
 		}
@@ -1113,14 +1113,14 @@ namespace diva
 
 		void MusicUI::SongListHighlightItemChanged(int index)
 		{
-			
+
 		}
 
 		void MusicUI::GameStartPost(int mapId, int dif, int gameMode)
 		{
 			//SMDivaNetCode
 			//////////////////////////////////////////////////////////////////////////
-			// ÓÐ¸èÇúid»¹²»¹»£¬ÎÒ¶àÐ´Ò»¸öÄÑÒ×¶ÈÖ¸Ê¾£¬012±íÊ¾easy normal hard
+			// æœ‰æ­Œæ›²idè¿˜ä¸å¤Ÿï¼Œæˆ‘å¤šå†™ä¸€ä¸ªéš¾æ˜“åº¦æŒ‡ç¤ºï¼Œ012è¡¨ç¤ºeasy normal hard
 			//netCore.send(DIVA_NET_CTS_LOBBY_START, 0, "%d%d%d", gameMode + 1, mapId, dif);
 			//////////////////////////////////////////////////////////////////////////
 			//end
@@ -1184,7 +1184,7 @@ namespace diva
 		{
 			MusicUI* ui = MusicUI::Instance();
 			if (ui->gameMode > 0)
-				ui->gameMode --;
+				ui->gameMode--;
 			else
 				ui->gameMode = ui->modeNames.size() - 1;
 			ui->modeTextLabel->setText(ui->modeNames[ui->gameMode]);
@@ -1195,7 +1195,7 @@ namespace diva
 		{
 			MusicUI* ui = MusicUI::Instance();
 			if (ui->gameMode < ui->modeNames.size() - 1)
-				ui->gameMode ++;
+				ui->gameMode++;
 			else
 				ui->gameMode = 0;
 			ui->modeTextLabel->setText(ui->modeNames[ui->gameMode]);
@@ -1207,7 +1207,7 @@ namespace diva
 			MusicUI* ui = MusicUI::Instance();
 			if (ui->rankPage > 0)
 			{
-				ui->rankPage --;
+				ui->rankPage--;
 				ui->refreshRankPageText();
 				ui->refreshRankingList(true, false);
 			}
@@ -1218,7 +1218,7 @@ namespace diva
 			MusicUI* ui = MusicUI::Instance();
 			if (ui->rankPage < ui->maxRankPage)
 			{
-				ui->rankPage ++;
+				ui->rankPage++;
 				ui->refreshRankPageText();
 				ui->refreshRankingList(true, false);
 			}
@@ -1250,9 +1250,9 @@ namespace diva
 			//NextState = "house";
 			MAPMGR.SelectedMap_Clear();
 			int count = ui->selectedListBox->getItemCount();
-			for (int i=0; i<count; i++)
+			for (int i = 0; i<count; i++)
 			{
-				const SongInfo& t= ui->selectedListBox->getSong(i);
+				const SongInfo& t = ui->selectedListBox->getSong(i);
 				MAPMGR.SelectedMap_Add(t.mapInfo.id, t.getLevel(), static_cast<divamap::DivaMap::ModeType>(t.mode));
 			}
 #if defined(DIVA_USE_GNET) && !defined(DIVA_USE_POMELO)
@@ -1280,7 +1280,7 @@ namespace diva
 		{
 			MusicUI* ui = MusicUI::Instance();
 			//ui->UpdateSongList();
-			ui->mgr->GetMB()->Show(L"¸üÐÂËùÓÐ¸èÇúÁÐ±í¿ÉÄÜ»¨·Ñ½Ï¶àÊ±¼ä£¬ÄúÈ·¶¨Âð£¿", L"ÌáÊ¾", gcn::MessageBoxEx::TYPE_YESNO);
+			ui->mgr->GetMB()->Show(L"Updating the song list can be slow, continue anyway?", L"Prompt", gcn::MessageBoxEx::TYPE_YESNO);
 			ui->mgr->GetMB()->RegisterCallback(MessageBoxEx::Callback(&MusicUI::CB_UpdateSongList, ui));
 		}
 	}

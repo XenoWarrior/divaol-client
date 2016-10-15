@@ -168,14 +168,14 @@
 	"resLabel": {
 		"desPos": [100, 60],
 		"textColor": [255, 255, 255],
-		"text": "Resolution："
+		"text": "Resolution:"
 	},
 
 	"windowModeSelDesRect": [320, 105, 200, 30],
 	"windowModeLabel": {
 		"desPos": [100, 105],
 		"textColor": [255, 255, 255],
-		"text": "Window Mode："
+		"text": "Window Mode:"
 	},
 
 	"mvSelDesRect": [320, 150, 200, 30],
@@ -196,27 +196,27 @@
 	"uiModLabel": {
 		"desPos": [100, 240],
 		"textColor": [255, 255, 255],
-		"text": "Interface Mod："
+		"text": "Interface Mod:"
 	},
 
 	"lanSelDesRect": [320, 285, 200, 30],
 	"lanLabel": {
 		"desPos": [100, 285],
 		"textColor": [255, 255, 255],
-		"text": "Language："
+		"text": "Language:"
 	},
 
 	"psSelDesRect": [320, 330, 200, 30],
 	"psLabel": {
 		"desPos": [100, 330],
 		"textColor": [255, 255, 255],
-		"text": "Particle Effect："
+		"text": "Particle Effect:"
 	},
 
 	"autoCtSelDesRect": [320, 375, 200, 30],
 	"autoCtLabel": {
 		"desPos": [100, 375],
 		"textColor": [255, 255, 255],
-		"text": "自动爆气："
+		"text": "Burst Effect:"
 	}
 }

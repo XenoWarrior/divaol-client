@@ -1,4 +1,4 @@
-#include "RankingList.h"
+ï»¿#include "RankingList.h"
 #include "lib/Base/String.h"
 #include "ui/GUIChanEx/GUIChanJsonHelper.h"
 #include "divasongmgr/DivaMapManager.h"
@@ -59,42 +59,42 @@ namespace diva
 			{
 				graphics->setColor(gcn::Color(fontColor, alpha));
 				graphics->setFont(font);
-				graphics->drawTextW(L"ÕýÔÚ¶ÁÈ¡...", playerP.x, playerP.y);
+				graphics->drawTextW(L"Loading...", playerP.x, playerP.y);
 			}
 			else if (isNull == 0)
 			{
 				graphics->setColor(gcn::Color(fontColor, alpha));
 				graphics->setFont(font);
-				graphics->drawTextW(L"·ÖÊý:" + Base::String::any2string<int>(score), scoreP.x, scoreP.y);
+				graphics->drawTextW(L"Score:" + Base::String::any2string<int>(score), scoreP.x, scoreP.y);
 				graphics->drawTextW(L"#" + Base::String::any2string<int>(ranking), rankingP.x, rankingP.y);
-				graphics->drawTextW(L"Á¬»÷:" + Base::String::any2string<int>(combo), comboP.x, comboP.y);
+				graphics->drawTextW(L"Combo:" + Base::String::any2string<int>(combo), comboP.x, comboP.y);
 
 				// temporarily hard code here
-				static const wchar_t* CTText[] = {L"Áã¶Î",L"Ò»¶Î",L"¶þ¶Î",L"Èý¶Î",L"ËÄ¶Î",L"Îå¶Î",L"Áù¶Î",L"±¬±í"};
-				
+				static const wchar_t* CTText[] = { L"é›¶æ®µ",L"ä¸€æ®µ",L"äºŒæ®µ",L"ä¸‰æ®µ",L"å››æ®µ",L"äº”æ®µ",L"å…­æ®µ",L"çˆ†è¡¨" };
+
 				graphics->drawTextW(CTText[maxCT], maxCTP.x, maxCTP.y);
-				graphics->drawTextW(L"Ä£Ê½:" + MAPMGR.GetModeStr(mode), modeP.x, modeP.y);
-				graphics->drawTextW(L"By:" + playerName, playerP.x, playerP.y);
+				graphics->drawTextW(L"Mode: " + MAPMGR.GetModeStr(mode), modeP.x, modeP.y);
+				graphics->drawTextW(playerName, playerP.x, playerP.y);
 
 				if (rankImage && rankResult < rankDrawPos.size() && rankResult < rankTexRect.size()) {
-					graphics->setColor(gcn::Color(CARGB(0,255,255,255), alpha));
+					graphics->setColor(gcn::Color(CARGB(0, 255, 255, 255), alpha));
 
 					graphics->drawImage(rankImage, rankTexRect[rankResult].x, rankTexRect[rankResult].y,
-												   rankDrawPos[rankResult].x, rankDrawPos[rankResult].y,
-												   rankTexRect[rankResult].width, rankTexRect[rankResult].height);
+						rankDrawPos[rankResult].x, rankDrawPos[rankResult].y,
+						rankTexRect[rankResult].width, rankTexRect[rankResult].height);
 				}
 			}
 			else if (isNull == 1)
 			{
 				graphics->setColor(gcn::Color(fontColor, alpha));
 				graphics->setFont(font);
-				graphics->drawTextW(L"ÔÝÎÞ¼ÇÂ¼", playerP.x, playerP.y);
+				graphics->drawTextW(L"No Record", playerP.x, playerP.y);
 			}
 			else
 			{
 				graphics->setColor(gcn::Color(fontColor, alpha));
 				graphics->setFont(font);
-				graphics->drawTextW(L"ÉÐÃ»ÓÐÄãµÄÅÅÃû", playerP.x, playerP.y);
+				graphics->drawTextW(L"No Ranking", playerP.x, playerP.y);
 			}
 		}
 
@@ -130,12 +130,12 @@ namespace diva
 
 			rankTexRect.clear();
 			rankDrawPos.clear();
-			if(conf.isMember(L"ranks")) {
+			if (conf.isMember(L"ranks")) {
 				const WJson::Value &ranks = conf[L"ranks"];
-					if(ranks[L"texture"].asString() != L"") {
+				if (ranks[L"texture"].asString() != L"") {
 					rankImage = Image::load(ranks[L"texture"].asString());
 
-					for(int i = 0; i < ranks[L"positions"].size(); i++) {
+					for (int i = 0; i < ranks[L"positions"].size(); i++) {
 						rankTexRect.push_back(Helper::GetRect(ranks[L"positions"][i][L"src"]));
 						rankDrawPos.push_back(Helper::GetPoint(ranks[L"positions"][i][L"tar"]));
 					}

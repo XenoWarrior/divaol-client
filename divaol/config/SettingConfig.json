@@ -38,8 +38,8 @@
 		}
 	],
 	"windowModes": [
-		"是",
-		"否"
+		"Window",
+		"Fullscreen"
 	],
 	"musicVolumes":[
 		"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"
@@ -48,27 +48,27 @@
 		"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"
 	],
 	"uiMods":[
-		"默认",
-		"PlayStation按键"
+		"Default",
+		"PlayStation"
 	],
 	"uiModFiles":[
 		"standard",
 		"skin_playstation"
 	],
 	"languages":[
-		"中文"
+		"English"
 	],
 	"particleSystems":[
-		"关闭",
-		"低",
-		"正常"
+		"None",
+		"Minimal",
+		"Normal"
 	],
 	"autoCt":[
-		"开",
-		"关"
+		"On",
+		"Off"
 	],
 
-	"gameModeNames" : ["普通", "接力"],
+	"gameModeNames" : ["Standard", "Relay"],
 	"difNames": ["EASY", "NORMAL", "HARD", "EXTRA", "DIE"],
 	"listenDelay" : 1.0,
 	"iconFileNames" : ["res/test_icon.png", "res/test_icon.png", "res/test_icon.png", "res/test_icon.png"],

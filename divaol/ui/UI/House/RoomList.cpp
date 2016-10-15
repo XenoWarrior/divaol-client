@@ -1,4 +1,4 @@
-#include "divapomelo/diva/Client.h"
+ï»¿#include "divapomelo/diva/Client.h"
 
 #include "RoomList.h"
 
@@ -88,7 +88,7 @@ namespace diva
 			graphics->drawTextW(info.playerInfo.nickname, 112, 17);
 			graphics->setColor(0xFFFFFFFF);
 			graphics->drawTextW(info.playerInfo.nickname, 110, 15);
-			
+
 			// ---- Draw Icon
 			graphics->setColor(gcn::Color(255, 255, 255, alpha));
 			if (info.slot == 1)
@@ -168,21 +168,21 @@ namespace diva
 		void RoomListItem::draw(Graphics* graphics, Font* font, int state, int alpha)
 		{
 			graphics->setColor(gcn::Color(255, 255, 255, alpha));
-			// image1ÊÇÆÕÍ¨£¬image2ÊÇmouseon£¬image3ÊÇselected
+			// image1æ˜¯æ™®é€šï¼Œimage2æ˜¯mouseonï¼Œimage3æ˜¯selected
 			if (state == 0)
 				graphics->drawImage(image1, r1.x, r1.y, 0, 0, r1.width, r1.height);
 			else if (state == 1)
 				graphics->drawImage(image2, r2.x, r2.y, 0, 0, r2.width, r2.height);
 			else if (state == 2)
 				graphics->drawImage(image3, r3.x, r3.y, 0, 0, r3.width, r3.height);
-			
+
 			graphics->drawTextW(info.stageName, x1, y1);
 			if (info.selectedSong.size() != 0 && info.selectedSong[0] != L"Random ()")
-				graphics->drawTextW(L"µ±Ç°¸èÇú£º" + info.selectedSong[0], x2, y2);
+				graphics->drawTextW(L"Song: " + info.selectedSong[0], x2, y2);
 			else
-				graphics->drawTextW(L"µ±Ç°¸èÇú£ºÉÐÎ´Ñ¡Ôñ", x2, y2);
-			graphics->drawTextW(L"·¿Ö÷£º" + info.ownerNickname, x3, y3);
-			graphics->drawTextW(L"·¿¼äÈËÊý£º" + iToWS(info.playerNum) + L"/" + iToWS(8), x4, y4);
+				graphics->drawTextW(L"Song: Not Selected", x2, y2);
+			graphics->drawTextW(L"Host: " + info.ownerNickname, x3, y3);
+			graphics->drawTextW(L"Players in stage: " + iToWS(info.playerNum) + L"/" + iToWS(8), x4, y4);
 		}
 
 		// --------------------------
@@ -205,7 +205,7 @@ namespace diva
 			this->f3 = f3;
 			this->r3 = r3;
 		}
-		
+
 		void RoomList::pushRoomItem(const Network::RoomInfo& info)
 		{
 			RoomListItem* b = new RoomListItem();
@@ -223,7 +223,7 @@ namespace diva
 #else
 				POMELO_STAGE_PEER->join(Base::String(item->getInfo().stageId));
 #endif
-				HouseUI::Instance()->mgr->GetMB()->Show(L"¼ÓÈë·¿¼äÖÐ...", L"ÌáÊ¾", gcn::MessageBoxEx::TYPE_NONE);
+				HouseUI::Instance()->mgr->GetMB()->Show(L"Joining the game...", L"Prompt", gcn::MessageBoxEx::TYPE_NONE);
 				isWaiting = true;
 				nowWaitingRest = WaitTimeLimit;
 			}
@@ -236,7 +236,7 @@ namespace diva
 				if (nowWaitingRest <= 0)
 				{
 					isWaiting = false;
-					HouseUI::Instance()->mgr->GetMB()->Show(L"¼ÓÈë·¿¼ä³¬Ê±", L"ÌáÊ¾", gcn::MessageBoxEx::TYPE_OK);
+					HouseUI::Instance()->mgr->GetMB()->Show(L"Joining the game...", L"Prompt", gcn::MessageBoxEx::TYPE_OK);
 				}
 			}
 		}

@@ -109,7 +109,7 @@ namespace diva
 				if (!isPlaying)
 					graphics->drawTextW(name, 90, 50);
 				else
-					graphics->drawTextW(name + L"(ÓÎÏ·ÖÐ)", 90, 50);
+					graphics->drawTextW(name + L"(Playing)", 90, 50);
 
 				// icon
 				if (icon)
@@ -142,7 +142,7 @@ namespace diva
 			{
 				// no people
 				graphics->setFont(font);
-				graphics->drawTextW(L"ÀëÏß", 90, 50);
+				graphics->drawTextW(L"Empty", 90, 50);
 			}
 		}
 	}
