@@ -794,7 +794,7 @@ namespace diva
 					if (status == 0) {
 						messagePanelChatBox->addText(L"[Prompt] Connected to server.", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 						POMELO_CLIENT.login(usernameInput->getText(), passwordInput->getText());
-						mgr->GetMB()->Show(L"Logging in...", L"Error", gcn::MessageBoxEx::TYPE_OK);
+						mgr->GetMB()->Show(L"Logging in...", L"Error", gcn::MessageBoxEx::TYPE_NONE);
 					}
 					else {
 						if(mgr->GetMB()->isTopWindow())
@@ -1204,7 +1204,7 @@ namespace diva
 			}
 
 			{
-			int color = POMELO_STAGE_PEER->myInfo().color;
+			int color = 0; // POMELO_STAGE_PEER->myInfo().color;
 			for (int i=0; i<teamListButtons.size(); i++)
 				teamListButtons[i]->setSelected(color == i);
 			}
@@ -1283,7 +1283,6 @@ namespace diva
 			//SCHEDULER_CLIENT.updateRoomList();
 #else
 			POMELO_LOBBY_PEER->getStageList();
-			messagePanelChatBox->addText(L"[Error] Unable to fetch stage list.", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 #endif
 			//divanet::NetworkManager::instance().scheduler()->send("scheduler#roomlist");
 

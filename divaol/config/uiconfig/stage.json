@@ -209,7 +209,7 @@
   },
   "itemlist/Config": {
     "itemGap": 9,
-    "items": ["道具1", "道具2", "道具3", "道具4", "道具5", "道具6"]
+    "items": ["Props 1", "Props 2", "Props 3", "Props 4", "Props 5", "Props 6"]
   },
   "RoomList/createRoom/btn_openStage_mouseon": {
     "filename": "res/stage_001.png",
@@ -827,22 +827,23 @@
     "Caption": {
       "desX" : 60,
       "desY" : 45,
-      "text" : "模式选择",
+      "text" : "Mode Selection",
       "textColor" : [255, 255, 255]
     },
     "num" : 10,
     "names" : [
-      "鉴赏",
-      "Auto君" ,
-      "加速" ,
-      "减速" ,
-      "死亡" ,
-      "随机置换" ,
-      "混沌" ,
-      "渐隐" ,
-      "黑屋" ,
-      "尝试"],
-    "confirmName" : "确定",
+      "PV Only",
+      "Autoplay" ,
+      "Doule Time" ,
+      "Half Time" ,
+      "Sudden Death" ,
+      "Random" ,
+      "Chaos" ,
+      "Fade Out" ,
+      "Flashlight" ,
+      "No Fail"
+    ],
+    "confirmName" : "Confirm",
     "beginX" : 60,
     "beginY" : 90,
     "gapX": 110, 
@@ -854,6 +855,6 @@
   "ModeButton": {
     "desX" : 1480,
     "desY" : 820,
-    "text" : "模式选择"
+    "text" : "Mode Selection"
   }
 }

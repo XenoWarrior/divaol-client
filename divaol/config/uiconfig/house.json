@@ -1,6 +1,6 @@
 {
   "MessageChannels": {
-    "world" : "Global",
+    "world" : "World",
     "private" : "PM",
     "stage": "Stage"
   },

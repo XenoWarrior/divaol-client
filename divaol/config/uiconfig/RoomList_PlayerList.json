@@ -312,8 +312,8 @@
   },
 
   "RoomList/Config": {
-    "openStageText": "公开舞台",
-	"refreshStageText": "刷新列表",
+    "openStageText": "Create Stage",
+	"refreshStageText": "Refresh List",
     "xGap": 7,
     "yGap": 0,
     "firstX": 0,

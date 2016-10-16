@@ -126,9 +126,6 @@
     <Filter Include="DivaOL\ui\UI\Stage">
       <UniqueIdentifier>{fab81794-509b-4883-b86b-ddf0ece0c9f6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DivaOL\ui\UI\TitleScreen">
-      <UniqueIdentifier>{f358fddf-3b32-41ce-8637-5b49d9939965}</UniqueIdentifier>
-    </Filter>
     <Filter Include="DivaOL\ui\UI\Result">
       <UniqueIdentifier>{4c0300ce-dc0d-4379-8b88-aae2c3fa01d1}</UniqueIdentifier>
     </Filter>
@@ -273,6 +270,9 @@
     </Filter>
     <Filter Include="SoraHoshizora\defaults">
       <UniqueIdentifier>{2cef4640-6e28-4ab5-a729-25f85e45fde2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DivaOL\ui\UI\TitleScreen">
+      <UniqueIdentifier>{f358fddf-3b32-41ce-8637-5b49d9939965}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
