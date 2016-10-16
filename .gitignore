@@ -18,3 +18,5 @@ divaol/divaol.VC*
 *.opensdf
 ThirdParty/
 divaol/log.txt
+*.obj
+*.pdb

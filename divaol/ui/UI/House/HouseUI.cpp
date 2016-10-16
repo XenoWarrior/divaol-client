@@ -1217,7 +1217,7 @@ namespace diva
 			//Refresh_SongList();
 			BeginSongListAnimation();
 
-			messagePanelChatBox->addText(L"[Prompt] Updated room information", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+			messagePanelChatBox->addText(L"[Prompt] Updated room information.", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 			if (!POMELO_STAGE_PEER->owner())
 				selectMusicButton->setEnabled(!POMELO_STAGE_PEER->getIsReady());
 		}
@@ -1283,6 +1283,7 @@ namespace diva
 			//SCHEDULER_CLIENT.updateRoomList();
 #else
 			POMELO_LOBBY_PEER->getStageList();
+			messagePanelChatBox->addText(L"[Error] Unable to fetch stage list.", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 #endif
 			//divanet::NetworkManager::instance().scheduler()->send("scheduler#roomlist");
 
@@ -1396,7 +1397,10 @@ namespace diva
 					}
 					if (t.finish)
 					{
+						messagePanelChatBox->addText(L"[Prompt] Song List Server: " + MAPMGR.GetQueryAddress(), gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+						messagePanelChatBox->addText(L"[Prompt] Song Data Server: " + MAPMGR.GetQueryAddress_DownloadCategory(), gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
 						messagePanelChatBox->addText(L"[Prompt] Updated song list.", gcn::Helper::GetColor(conf[L"MessageArea/TextColors"][L"hint"]));
+						
 						selectMusicButton->setEnabled(true);
 						break;
 					}

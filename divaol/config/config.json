@@ -6,10 +6,10 @@
    "isAutoCT" : true,
    "isWindowMode" : true,
    "language" : 0,
-   "musicVolume" : 10,
+   "musicVolume" : 7,
    "particleSystem" : 2,
-   "resolution" : 1,
+   "resolution" : 2,
    "screenFadeTime" : 0.5,
-   "seVolume" : 6,
+   "seVolume" : 7,
    "uiMod" : 0
 }

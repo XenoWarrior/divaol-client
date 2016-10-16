@@ -216,11 +216,14 @@ namespace divamap
 		std::map<int, std::string> GameModeStr;
 		std::map<int, std::map<int, bool>> ModeConflict;
 
+		// Make these public so we can access them for debug reasons
+		std::wstring GetQueryAddress();
+		std::wstring GetQueryAddress_DownloadCategory();
 
 	private:
 		std::wstring downloadCategoryQueryAddress;
 		std::wstring gameInfoQueryAddress;
-		std::wstring GetQueryAddress_DownloadCategory();
+
 		std::wstring GetQueryAddress_MapListUpdateByTime(std::wstring basedTime);
 		std::wstring GetQueryAddress_RecordByRank(int mapID, int difficulty, int startRank, int endRank);
 		std::wstring GetQueryAddress_RecordByUser(int mapID, int difficulty, std::wstring userID);

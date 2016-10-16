@@ -37,7 +37,8 @@ namespace divacore
 		{
 			applicationPath = Base::Path::GetApplicationPath(true);
 
-			MAPMGR.PrepareDownloadFile(L"http://divaol.com/update/divaol.json");
+			// TODO: Initialise this service on XenUpdater
+			MAPMGR.PrepareDownloadFile(L"http://xenupdater.projectge.com/divaol/xu/update/client.json");
 
 			state = REQUIREING;
 		}
