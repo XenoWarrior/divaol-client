@@ -20,3 +20,5 @@ ThirdParty/
 divaol/log.txt
 *.obj
 *.pdb
+KeyConfig/bin/
+KeyConfig/obj/
