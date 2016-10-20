@@ -49,8 +49,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)../Hoshizor/Plugins/SoraFmodSoundSystem;$(ProjectDir)../Hoshizor/Plugins/SoraSoundManager;$(ProjectDir)../Hoshizor/Plugins/fmod/;$(ProjectDir)../Hoshizor/Plugins/SoraBox2dPhysics;$(ProjectDir)../Hoshizor/Plugins\SoraVlcMoviePlayer\win32\include;$(ProjectDir)../Hoshizor/Plugins/SoraLua/LuaPlus/src;$(ProjectDir)../Hoshizor./Plugins/SoraLua;$(ProjectDir)../Hoshizor/Plugins/libvlc/win32/include;$(ProjectDir)../Hoshizor/Plugins/cg;$(ProjectDir)/../Hoshizor/Plugins/SoraShader;$(ProjectDir)/../Hoshizor/Plugins/SoraGUIChan;$(ProjectDir)/../Hoshizor/Plugins/SoraFreetypeFont/;$(DXSDK_DIR)/include;$(ProjectDir)/../Hoshizor/Plugins;$(ProjectDir)/../Hoshizor/Sora;$(ProjectDir)/divacore;$(ProjectDir);$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)../Hoshizor/Plugins\SoraVlcMoviePlayer/win32/lib;$(ProjectDir)../Hoshizor/Plugins/fmod/;$(ProjectDir)../Hoshizor/Plugins/SoraOGLRenderer;$(ProjectDir)../Hoshizor/Plugins/SoraGifSprite;$(ProjectDir)../Hoshizor/Plugins/SoraFreetypeFont;$(ProjectDir)../Hoshizor/Plugins/SoraAudiereSoundSystem;$(ProjectDir)../Hoshizor/Plugins/SoraHttpFile;$(ProjectDir)../Hoshizor/Plugins/SoraThread;$(ProjectDir)../Hoshizor/Plugins/SoraLua;$(ProjectDir)../Hoshizor/Plugins/libvlc/win32/lib;$(ProjectDir)/../Hoshizor/Plugins/cg;$(DXSDK_DIR)/Lib/x86;$(ProjectDir)/bin;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)../Hoshizor/Plugins/SoraFmodSoundSystem;$(ProjectDir)../Hoshizor/Plugins/SoraSoundManager;$(ProjectDir)../Hoshizor/Plugins/fmod/;$(ProjectDir)../Hoshizor/Plugins/SoraBox2dPhysics;$(ProjectDir)../Hoshizor/Plugins\SoraVlcMoviePlayer\win32\include;$(ProjectDir)../Hoshizor/Plugins/SoraLua/LuaPlus/src;$(ProjectDir)../Hoshizor./Plugins/SoraLua;$(ProjectDir)../Hoshizor/Plugins/libvlc/win32/include;$(ProjectDir)../Hoshizor/Plugins/cg;$(ProjectDir)/../Hoshizor/Plugins/SoraShader;$(ProjectDir)/../Hoshizor/Plugins/SoraGUIChan;$(ProjectDir)/../Hoshizor/Plugins/SoraFreetypeFont/;$(ProjectDir)/../ThirdParty/DirectX/Include;$(ProjectDir)/../Hoshizor/Plugins;$(ProjectDir)/../Hoshizor/Sora;$(ProjectDir)/divacore;$(ProjectDir);$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)../Hoshizor/Plugins\SoraVlcMoviePlayer/win32/lib;$(ProjectDir)../Hoshizor/Plugins/fmod/;$(ProjectDir)../Hoshizor/Plugins/SoraOGLRenderer;$(ProjectDir)../Hoshizor/Plugins/SoraGifSprite;$(ProjectDir)../Hoshizor/Plugins/SoraFreetypeFont;$(ProjectDir)../Hoshizor/Plugins/SoraAudiereSoundSystem;$(ProjectDir)../Hoshizor/Plugins/SoraHttpFile;$(ProjectDir)../Hoshizor/Plugins/SoraThread;$(ProjectDir)../Hoshizor/Plugins/SoraLua;$(ProjectDir)../Hoshizor/Plugins/libvlc/win32/lib;$(ProjectDir)/../Hoshizor/Plugins/cg;$(ProjectDir)/../ThirdParty/DirectX/Lib/x86;$(ProjectDir)/bin;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -1222,7 +1222,7 @@
     <ClCompile Include="divanetwork\gnet\gnet.cpp" />
     <ClCompile Include="divanetwork\gnet\netManager.cpp" />
     <ClCompile Include="divapomelo\diva\PeerComp.cpp" />
-    <ClCompile Include="divapomelo\diva\PerDefines.cpp" />
+    <ClCompile Include="divapomelo\diva\PreDefines.cpp" />
     <ClCompile Include="divapomelo\Lib\Base\Io\FileUtil.cpp" />
     <ClCompile Include="divapomelo\Lib\Base\Io\Path.cpp" />
     <ClCompile Include="divapomelo\Lib\Base\Io\Stream.cpp" />

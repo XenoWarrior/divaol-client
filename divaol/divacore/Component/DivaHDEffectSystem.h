@@ -4,6 +4,20 @@
  *  Created by Hyf042 on 3/20/12.
  *  Copyright 2012 Hyf042. All rights reserved.
  *
+ *  ---------------------------------------------
+ *
+ *	Modified by XenoWarrior (Ashley) on 20/10/16
+ *
+ *  Controls the different effects that are shown on keypress when playing the rhythm mode,
+ *  (SAFE, FINE, COOL, FLAME)
+ *
+ *  //! TODO:
+ *		- Implementaiton should be moved to their own .cpp file so we are left with Class.h and Class.cpp.
+ *			- This is for each class within this namespace.
+ *
+ *  //! FIXME:
+ *		- None found yet.
+ *
  */
 
 #ifndef DIVA_HD_EFFECT_SYSTEM
@@ -23,30 +37,43 @@ namespace divacore
 		float scale;
 
 	protected:
-		std::string getName() {return "PressSafe";}
+		std::string getName()
+		{
+			return "PressSafe";
+		}
+
 		virtual void onInitialize()
 		{
 			scale = 0;
 		}
-		virtual void onUpdate(float dt) 
+
+		virtual void onUpdate(float dt)
 		{
-			if(nowTime<totalTime/3)
-				scale += dt*480;
+			if (nowTime < totalTime / 3)
+			{
+				scale += dt * 480;
+			}
 			else
-				scale += dt*240;
+			{
+				scale += dt * 240;
+			}
 
-			image->setScale(scale/image->getSpriteWidth(),scale/image->getSpriteHeight());
+			image->setScale(scale / image->getSpriteWidth(), scale / image->getSpriteHeight());
 
-			int alpha = (totalTime-nowTime)*150/totalTime;
-			image->setColor(CSETA(image->getColor(),alpha));
+			int alpha = (totalTime - nowTime) * 150 / totalTime;
+			image->setColor(CSETA(image->getColor(), alpha));
 
-			if(getState()==STOP)
+			if (getState() == STOP)
+			{
 				over();
+			}
 		}
+
 		virtual void onRender() 
 		{
 			Core::Ptr->render(image,"+effect"+getTag());
 		}
+
 		virtual void onConstruct(Config &config, const std::string &head)
 		{
 			image = new sora::SoraSprite();
@@ -58,6 +85,7 @@ namespace divacore
 
 			image->setPosition(x,y);
 		}
+
 		virtual void onDestroy()
 		{
 			SAFE_DELETE(image);
@@ -68,37 +96,45 @@ namespace divacore
 	{
 		Rect imageRect;
 		sora::SoraSprite *image;
+
 	protected:
-		std::string getName() {return "PressFine";}
+		std::string getName()
+		{
+			return "PressFine";
+		}
+
 		virtual void onInitialize()
 		{
 		}
+
 		virtual void onUpdate(float dt) 
 		{
-			int cnt = nowTime/totalTime*8;
-			image->setTextureRect(imageRect.x+cnt%4*imageRect.w,imageRect.y+cnt/4*imageRect.h,imageRect.w,imageRect.h);
+			int cnt = nowTime / totalTime * 8;
+			image->setTextureRect(imageRect.x + cnt % 4 * imageRect.w, imageRect.y + cnt / 4 * imageRect.h, imageRect.w, imageRect.h);
 			
-			if(getState()==STOP)
+			if (getState() == STOP)
+			{
 				over();
+			}
 		}
+
 		virtual void onRender() 
 		{
 			Core::Ptr->render(image,"+effect"+getTag());
 		}
+
 		virtual void onConstruct(Config &config, const std::string &head)
 		{
 			image = new sora::SoraSprite();
 			image->setTexture(source);
-			//sora::SoraTextureMap::Instance()->addRf(source);
 			imageRect = config.getAsRect(head+"textureRect");
 			image->setTextureRect(imageRect.x,imageRect.y,imageRect.w,imageRect.h);
 			image->setCenter(imageRect.w/2,imageRect.h/2);
-			
 			image->setPosition(x,y);
-
 			image->setColor(CSETA(image->getColor(),200));
 			image->setScale(1,1);
 		}
+
 		virtual void onDestroy()
 		{
 			SAFE_DELETE(image);
@@ -109,11 +145,17 @@ namespace divacore
 	{
 		Rect imageRect;
 		sora::SoraSprite *image;
+
 	protected:
-		std::string getName() {return "PressFlame";}
+		std::string getName()
+		{
+			return "PressFlame";
+		}
+
 		virtual void onInitialize()
 		{
 		}
+
 		virtual void onUpdate(float dt) 
 		{
 			float scale = nowTime/totalTime*760/*1720*/;
@@ -123,26 +165,28 @@ namespace divacore
 			int alpha = (totalTime-nowTime)*255/totalTime;
 			image->setColor(CSETA(image->getColor(),alpha));
 
-			if(getState()==STOP)
+			if (getState() == STOP)
+			{
 				over();
+			}
 		}
+
 		virtual void onRender() 
 		{
 			Core::Ptr->render(image,"+effect"+getTag());
 		}
+
 		virtual void onConstruct(Config &config, const std::string &head)
 		{
 			image = new sora::SoraSprite();
 			image->setTexture(source);
-			//sora::SoraTextureMap::Instance()->addRf(source);
-			
 
 			imageRect = config.getAsRect(head+"textureRect");
 			image->setTextureRect(imageRect.x,imageRect.y,imageRect.w,imageRect.h);
 			image->setCenter(imageRect.w/2,imageRect.h/2);
-
 			image->setPosition(x,y);
 		}
+
 		virtual void onDestroy()
 		{
 			SAFE_DELETE(image);
@@ -153,43 +197,53 @@ namespace divacore
 	{
 		Rect imageRect;
 		sora::SoraSprite *image;
+
 	protected:
-		std::string getName() {return "PressCool";}
+		std::string getName()
+		{
+			return "PressCool";
+		}
+
 		virtual void onInitialize()
 		{
 		}
+
 		virtual void onUpdate(float dt) 
 		{
-			int cnt = nowTime/totalTime*12;
-			image->setTextureRect(imageRect.x+cnt%3*imageRect.w,imageRect.y+cnt/3*imageRect.h,imageRect.w,imageRect.h);
+			int cnt = nowTime / totalTime * 12;
+			image->setTextureRect(imageRect.x + cnt % 3 * imageRect.w, imageRect.y + cnt / 3 * imageRect.h, imageRect.w, imageRect.h);
 
-			if(getState()==STOP)
+			if (getState() == STOP)
+			{
 				over();
+			}
 		}
+
 		virtual void onRender() 
 		{
 			Core::Ptr->render(image,"+effect"+getTag());
 		}
+
 		virtual void onConstruct(Config &config, const std::string &head)
 		{
 			image = new sora::SoraSprite();
 			image->setTexture(source);
-			//sora::SoraTextureMap::Instance()->addRf(source);
 
 			imageRect = config.getAsRect(head+"textureRect");
+
 			image->setTextureRect(imageRect.x,imageRect.y,imageRect.w,imageRect.h);
 			image->setCenter(imageRect.w/2,imageRect.h/2);
-
 			image->setPosition(x,y);
-
 			image->setColor(CSETA(image->getColor(),150));
 			image->setScale(4,4);
 		}
+
 		virtual void onDestroy()
 		{
 			SAFE_DELETE(image);
 		}
 	};
+
 	/*
 	HDEffectSystem
 	the effects pull from diva HD
@@ -211,6 +265,7 @@ namespace divacore
 			effect->destroy();
 			SAFE_DELETE(effect);
 		}
+
 	public:
 		HDEffectSystem():level(2) {}
 
@@ -219,18 +274,23 @@ namespace divacore
 			sources.clear();
 			effects.clear();
 		}
+
 		void gameStop()
 		{
 			for(SOURCES::iterator ptr = sources.begin(); ptr != sources.end(); ptr++)
+			{
 				sora::SoraTextureMap::Instance()->decRf(ptr->second);
-			//	sora::SoraCore::Ptr->releaseTexture(ptr->second);
+			}
+
 			sources.clear();
 			clear();
 		}
+
 		void gameLoad(const std::string &configFile)
 		{
-			configloader::loadWithJson(config,configFile);
+			configloader::loadWithJson(config, configFile);
 		}
+
 		void gameLoadFromConfig(Config &config)
 		{
 			this->config = config;
@@ -239,7 +299,10 @@ namespace divacore
 		void clear()
 		{
 			for(EFFECTS::iterator ptr = effects.begin(); ptr != effects.end(); ptr++)
+			{ 
 				delEffect(*ptr);
+			}
+
 			effects.clear();
 			pSystem.Clear();
 		}
@@ -248,39 +311,54 @@ namespace divacore
 		{
 			effects.push_back(effect);
 		}
+
 		virtual void del(BaseEffect* effect) 
 		{
-			for(EFFECTS::iterator ptr = effects.begin(); ptr != effects.end(); ptr++)
+			for (EFFECTS::iterator ptr = effects.begin(); ptr != effects.end(); ptr++)
+			{
 				if((*ptr)==effect)
 				{
 					effects.erase(ptr);
 					break;
 				}
 				delEffect(effect);
+			}
 		}
 
 		virtual void update(float dt)
 		{
 			pSystem.Update(dt*1000);
 
-			for(EFFECTS::iterator ptr = effects.begin(); ptr != effects.end(); ptr++)
-				if(!(*ptr)->isOver())
+			for (EFFECTS::iterator ptr = effects.begin(); ptr != effects.end(); ptr++)
+			{
+				if (!(*ptr)->isOver())
+				{
 					(*ptr)->update(dt);
+				}
+			}
 
 			EFFECTS tmpEffects = effects;
 			effects.clear();
+			
 			for(EFFECTS::iterator ptr = tmpEffects.begin(); ptr != tmpEffects.end(); ptr++)
 			{
-				if((*ptr)->isOver())
+				if ((*ptr)->isOver())
+				{
 					delEffect(*ptr);
+				}
 				else
+				{
 					effects.push_back(*ptr);
+				}
 			}
 		}
+
 		virtual void render()
 		{
-			for(EFFECTS::iterator ptr = effects.begin(); ptr != effects.end(); ptr++)
+			for (EFFECTS::iterator ptr = effects.begin(); ptr != effects.end(); ptr++)
+			{
 				(*ptr)->render();
+			}
 
 			pSystem.Draw();
 		}
@@ -289,14 +367,24 @@ namespace divacore
 		{
 			BaseEffect *effect = NULL;
 			std::string type = config.getAsString(effectName+"_type");
-			if(type=="PressSafe")
+
+			if (type == "PressSafe")
+			{
 				effect = new Effect_PressSafe();
-			else if(type=="PressFine")
+			}
+			else if (type == "PressFine")
+			{
 				effect = new Effect_PressFine();
-			else if(type=="PressFlame")
+			}
+			else if (type == "PressFlame")
+			{
 				effect = new Effect_PressFlame();
-			else if(type=="PressCool")
+			}
+			else if (type == "PressCool")
+			{
 				effect = new Effect_PressCool();
+			}
+
 			return effect;
 		}
 
@@ -313,18 +401,25 @@ namespace divacore
 				sources[effectName] = tex;
 				sora::SoraTextureMap::Instance()->addRf(tex);
 			}
+
 			return sources[effectName];
 		}
 
 		void addParticle(std::string type, ParticleData data, NotePtr note)
 		{
-			if(CORE_PTR->getMode()=="editMode")
+			if (CORE_PTR->getMode() == "editMode")
+			{
 				return;
+			}
 
-			if(type=="comet")
+			if (type == "comet")
+			{
 				pSystem.AddCometParticle(data.x,data.y,data.dx,data.dy,note);
-			else if(type=="star")
+			}
+			else if (type == "star")
+			{
 				pSystem.AddStarParticle(data.x,data.y,data.size,note);
+			}
 		}
 
 		void clearParticle(NotePtr note)
@@ -336,6 +431,7 @@ namespace divacore
 		{
 			this->level = level;
 		}
+
 		int getEffectLevel() 
 		{
 			return level;

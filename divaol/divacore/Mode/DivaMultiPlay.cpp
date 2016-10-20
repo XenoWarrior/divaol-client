@@ -341,11 +341,13 @@ namespace divacore
 		for(int i = 0; i < mTeams[myTeamID].players.size(); i++)
 			mTeams[myTeamID].score += mPlayers[mTeams[myTeamID].players[i]].score;
 	}
-	void NetGameInfo::updateInfoFromPacket(Json::Value &msg) {
+	void NetGameInfo::updateInfoFromPacket(Json::Value &msg)
+	{
 		Json::Value &list = msg["player"];
 		Json::Value &team = msg["team"];
 
-		for(int i = 0; i < mPlayers.size(); i++)
+		for (int i = 0; i < mPlayers.size(); i++)
+		{
 			if(i!=myPlayerID)
 			{
 				Json::Value &player = list[i];
@@ -354,6 +356,7 @@ namespace divacore
 				mPlayers[i].hp = player["hp"].asDouble();
 				mPlayers[i].status = divapomelo::PlayerStatusCode[player["stat"].asInt()];
 			}
+		}
 
 		for(int i = 0; i < mTeams.size(); i++)
 		{
@@ -414,12 +417,15 @@ namespace divacore
 #endif
 	}
 
-	void MultiPlay::registerNetworkEvent() {
+	void MultiPlay::registerNetworkEvent()
+	{
 		//×¢²á½ÓÊÕº¯Êý
-		POMELO_GAME_PEER->on(divapomelo::EventCode[divapomelo::ON_GAME_HEARTBEAT], [&](divapomelo::MessageReq &req) {
+		POMELO_GAME_PEER->on(divapomelo::EventCode[divapomelo::ON_GAME_HEARTBEAT], [&](divapomelo::MessageReq &req)
+		{
 			onHeartbeat(req.msg());
 		});
-		if(mInfo==0) {
+		if(mInfo==0)
+		{
 			mInfo = new NetGameInfo();
 			mInfo->setOwner(this);
 		}

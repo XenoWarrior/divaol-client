@@ -8,7 +8,7 @@ namespace divapomelo
 	using namespace PomeloCpp;
 
 	struct RoomInfo {
-		enum {STAGE,GAME};
+		enum { STAGE, GAME };
 
 		std::string ownerId;
 		std::string stageId;
@@ -27,20 +27,19 @@ namespace divapomelo
 	class LobbyPeer : public PeerComp
 	{
 	public:
-		LobbyPeer(PeerBase *peer):PeerComp(peer) {
-		}
+		LobbyPeer(PeerBase *peer):PeerComp(peer) {}
 
-		void getStageList() {
-			if (!isLogin()) {
+		void getStageList()
+		{
+			if (!isLogin())
+			{
 				BASE_LOGGER.log_warning(__FUNCTION__ + std::string(" not login!"));
 				return;
 			}
 
-			request(EventCode[PUSH_LOBBY_GETSTAGELIST],
-				Json::Object(),
-				[&](RequestReq& req, int status, Json::Value resp) {
+			request(EventCode[PUSH_LOBBY_GETSTAGELIST], Json::Object(), [&](RequestReq& req, int status, Json::Value resp)
+			{
 					_refreshStageList(resp);
-
 					peer->notify(req.route(), PUSH_LOBBY_GETSTAGELIST, &resp, status);
 			});
 		}
@@ -48,15 +47,19 @@ namespace divapomelo
 		RoomInfos& getRoomList() {return infos;}
 
 	protected:
-		virtual void registerEventCallback() {
+		// Registeres event codes to functions based on server response
+		virtual void registerEventCallback()
+		{
 			on(EventCode[ON_ENTER], Base::Bind(this, &LobbyPeer::onEnter));
 			on(EventCode[ON_LEAVE], Base::Bind(this, &LobbyPeer::onLeave));
 		}
 
-		void _refreshStageList(Json::Value &msg) {
+		void _refreshStageList(Json::Value &msg)
+		{
 			infos.clear();
 
-			for (int i = 0; i < msg.size(); i++) {
+			for (int i = 0; i < msg.size(); i++)
+			{
 				RoomInfo info;
 				Json::Value &item = msg[i];
 
@@ -68,14 +71,19 @@ namespace divapomelo
 				info.serverId = 0;
 				
 				info.state = (item["stat"].asInt() == STAGE_STAT_IDLE)?RoomInfo::STAGE:RoomInfo::GAME;
-				if (item["data"]["song"].isArray() && item["data"]["song"].size() > 0) {
+
+				if (item["data"]["song"].isArray() && item["data"]["song"].size() > 0)
+				{
 					Json::Value &firstItem = item["data"]["song"][Json::Value::UInt(0)];
 					info.songId = firstItem["id"].asInt();
 					info.level = firstItem["level"].asInt();
 					info.mode = firstItem["mode"].asInt();
 				}
 				else
+				{
 					info.songId = 0;
+				}
+
 				info.playernum = item["count"].asInt();
 
 				infos.push_back(info);
@@ -83,15 +91,16 @@ namespace divapomelo
 		}
 
 	private:
-		void onEnter(MessageReq& req) {
+		void onEnter(MessageReq& req)
+		{
 			notify(req.route(), ON_ENTER, req.msg());
 		}
 
-		void onLeave(MessageReq& req) {
+		void onLeave(MessageReq& req)
+		{
 			notify(req.route(), ON_LEAVE, req.msg());
 		}
 
-	private:
 		bool isRequireing;
 		RoomInfos infos;
 	};

@@ -4,6 +4,19 @@
  *  Created by Hyf042 on 2/7/12.
  *  Copyright 2012 Hyf042. All rights reserved.
  *
+ *  ---------------------------------------------
+ *
+ *	Modified by XenoWarrior (Ashley) on 20/10/16
+ *
+ *  Implementation for JsonGameModule.
+ *	Handles loading and management of game configuration.
+ *
+ *  //! TODO:
+ *		- Includes should be moved to the .h file.
+ *
+ *  //! FIXME:
+ *		- None found yet.
+ *
  */
 
 #include "DivaJsonGameModule.h"
@@ -33,7 +46,9 @@ namespace divacore
 	void JsonGameModule::loadConfig(const std::string &path)
 	{
 		if(path=="")
+		{
 			return;
+		}
 
 		sora::SoraResourceHandle handle = sora::SoraCore::Ptr->loadResourcePack(path);
 		sora::SoraResourceFile data("__init__");
@@ -42,7 +57,10 @@ namespace divacore
 		Json::Value root;
 
 		const char* cdata = (const char*)data;
-		if(cdata==0) LOGGER->notice("module "+path+" not found!");
+		if (cdata == 0)
+		{
+			LOGGER->notice("module " + path + " not found!");
+		}
 
 		if(reader.parse(cdata, cdata+data.size(), root))
 		{
@@ -57,46 +75,68 @@ namespace divacore
 			if(root.isMember("note"))
 			{
 				noteFile = JsonHelper::_loadAsString(root,"note");
-				if(noteFile=="__default__")
+				if (noteFile == "__default__")
+				{
 					noteFile = DEFAULT_INFO_PTR->getAsString("note");
+				}
+
 				configloader::loadWithJson(noteConfig,noteFile);
 			}
 			
 			if(root.isMember("render"))
 			{
 				renderFile = JsonHelper::_loadAsString(root,"render");
-				if(renderFile=="__default__")
+				if (renderFile == "__default__")
+				{
 					renderFile = DEFAULT_INFO_PTR->getAsString("render");
+				}
+
 				configloader::loadWithJson(renderConfig,renderFile);
 			}
 
 			if(root.isMember("effect"))
 			{
 				effectFile = JsonHelper::_loadAsString(root,"effect");
-				if(effectFile=="__default__")
+				if (effectFile == "__default__")
+				{
 					effectFile = DEFAULT_INFO_PTR->getAsString("effect");
+				}
+
 				configloader::loadWithJson(effectConfig,effectFile);
 			}
 
-			if(root.isMember("ui"))
+			if (root.isMember("ui"))
+			{
 				uiFile = JsonHelper::_loadAsString(root,"ui");
+			}
 
-			if(root.isMember("result"))
+			if (root.isMember("result"))
+			{
 				resultFile = JsonHelper::_loadAsString(root,"result");
+			}
 
 			//hooks
 			if(root.isMember("hook")&&root["hook"].isArray())
 			{
-				if(!root.isMember("hook_reserve"))
+				if (!root.isMember("hook_reserve"))
+				{
 					hooks.clear();
+				}
+
 				Json::Value &hook = root["hook"];
-				for(int i = 0; i < hook.size(); i++)
-					if(hook[i].isString())
+				for (int i = 0; i < hook.size(); i++)
+				{
+					if (hook[i].isString())
+					{
 						hooks.push_back(hook[i].asString());
+					}
+				}
 			}
 		}
 		else
+		{
 			LOGGER->notice(reader.getFormatedErrorMessages());
+		}
 
 		sora::SoraCore::Ptr->detachResourcePack(handle);
 		folderPaths.push_back(path);
@@ -105,6 +145,7 @@ namespace divacore
 	void JsonGameModule::load(const std::string &path) 
 	{
 		clear();
+
 		this->path = path;
 
 		sora::SoraResourceHandle handle = sora::SoraCore::Ptr->loadResourcePack(path);
@@ -115,38 +156,61 @@ namespace divacore
 		Json::Value root;
 
 		const char* cdata = (const char*)data;
-		if(cdata==0) DIVA_EXCEPTION_MODULE("module "+path+" not found!","JsonGameModule");
+		if (cdata == 0)
+		{
+			DIVA_EXCEPTION_MODULE("module "+path+" not found!","JsonGameModule");
+		}
+
 		if(reader.parse(cdata, cdata+data.size(), root))
 		{
 			//name
-			if(root.isMember("name"))
+			if (root.isMember("name"))
+			{
 				name = JsonHelper::_loadAsString(root,"name");
+			}
 			else
+			{
 				name = "anonymous";
+			}
 
 			//merge note/render/effect configs so that player can custom specfic parts of them
 			loadConfig(path);
 			loadConfig(SETTINGS.getUserModule());
 			loadConfig(MY_PLAYER_INFO.module());
 
-			if(noteFile=="__default__")
+			if (noteFile == "__default__")
+			{
 				noteFile = DEFAULT_INFO_PTR->getAsString("note");
-			if(uiFile=="__default__")
+			}
+			if (uiFile == "__default__")
+			{
 				uiFile = DEFAULT_INFO_PTR->getAsString("ui");
-			if(renderFile=="__default__")
+			}
+			if (renderFile == "__default__")
+			{
 				renderFile = DEFAULT_INFO_PTR->getAsString("render");
-			if(effectFile=="__default__")
+			}
+			if (effectFile == "__default__")
+			{
 				effectFile = DEFAULT_INFO_PTR->getAsString("effect");
-			if(resultFile=="__default__")
+			}
+			if (resultFile == "__default__")
+			{
 				resultFile = DEFAULT_INFO_PTR->getAsString("result");
+			}
 		}
 		else
+		{
 			DIVA_EXCEPTION_MODULE(reader.getFormatedErrorMessages(),"JsonGameModule");
+		}
 	}
+	
 	void JsonGameModule::distribute() 
 	{
-		for(int i = folderPaths.size()-1; i >= 0; i--)
+		for (int i = folderPaths.size() - 1; i >= 0; i--)
+		{
 			folders.push_back(sora::SoraCore::Ptr->loadResourcePack(folderPaths[i]));
+		}
 
 		ITEM_FACTORY_PTR->gameLoadFromConfig(noteConfig);
 		UI_PAINTER_PTR->gameLoad(uiFile);
@@ -156,18 +220,27 @@ namespace divacore
 
 		//insert hook
 		std::vector<std::string> customHooks = MY_PLAYER_INFO.hooks();
-		for(int i = 0; i < customHooks.size(); i++)
+		for (int i = 0; i < customHooks.size(); i++)
+		{
 			HOOK_MANAGER_PTR->insert(HOOK_MANAGER_PTR->createHook(customHooks[i]));
-		for(int i = 0; i < hooks.size(); i++)
+		}
+		for (int i = 0; i < hooks.size(); i++)
+		{
 			HOOK_MANAGER_PTR->insert(HOOK_MANAGER_PTR->createHook(hooks[i]));
+		}
 
 		std::vector<std::string> selectHooks = MAPMGR.GetSelectedModeStr();
 		for(int i = 0; i < selectHooks.size(); i++)
+		{
 			HOOK_MANAGER_PTR->insert(HOOK_MANAGER_PTR->createHook(selectHooks[i]));
+		}
 	}
+	
 	void JsonGameModule::gameStop()
 	{
-		for(int i = 0; i < folderPaths.size(); i++)
+		for (int i = 0; i < folderPaths.size(); i++)
+		{
 			sora::SoraCore::Ptr->detachResourcePack(folders[i]);
+		}
 	}
 }

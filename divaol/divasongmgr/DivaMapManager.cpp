@@ -892,15 +892,7 @@ namespace divamap
 				Base::String localFile = Base::Path::CombinePath(Base::String(LocalSongDirectoryW),
 					L"MAP_" + Base::String::any2string(id) + (eventType == DivaMapEventMessage::PrepareMapDataFile ? L"" : L"_noVideo") + L".divaolpack").str();
 				Base::String remoteFile = Base::String(GetQueryAddress_DownloadCategory()) + L"/" + localFile;
-
-				std::ofstream log;
-				log.open("DEBUG.txt");
-				log << localFile;
-				log << remoteFile;
-				log.close();
-
-				std::cout << localFile << " ------ " << remoteFile << std::endl;
-
+				
 				DivaMapManagerDownloadQuest *thisQuest = new DivaMapManagerDownloadQuest(remoteFile, localFile, id, eventType);
 				unsigned int threadAddress;
 				HANDLE hThread =

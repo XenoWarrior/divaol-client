@@ -3941,7 +3941,7 @@
     <ClCompile Include="divapomelo\diva\PeerComp.cpp">
       <Filter>DivaOL\divapomelo\diva</Filter>
     </ClCompile>
-    <ClCompile Include="divapomelo\diva\PerDefines.cpp">
+    <ClCompile Include="divapomelo\diva\PreDefines.cpp">
       <Filter>DivaOL\divapomelo\diva</Filter>
     </ClCompile>
   </ItemGroup>

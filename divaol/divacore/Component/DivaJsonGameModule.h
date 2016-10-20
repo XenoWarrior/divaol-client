@@ -4,6 +4,19 @@
  *  Created by Hyf042 on 2/7/12.
  *  Copyright 2012 Hyf042. All rights reserved.
  *
+ *  ---------------------------------------------
+ *
+ *	Modified by XenoWarrior (Ashley) on 20/10/16
+ *
+ *  Definition for JsonGameModule.
+ *
+ *  //! TODO:
+ *		- Identify what access level the variables without access levels should be placed under.
+ *		- Move implemented functions to DivaJsonGameModule.cpp.
+ *
+ *  //! FIXME:
+ *		- None found yet.
+ *
  */
 
 #ifndef DIVA_JSON_GAME_MODULE
@@ -29,15 +42,18 @@ namespace divacore
 
 		std::vector<sora::SoraResourceHandle> folders;
 		std::vector<std::string> folderPaths;
+
 	public:
-		std::string getName() {return name;}
-		void gameStop();
 		void init() {}
+
 		void load(const std::string &path);
 		void loadConfig(const std::string &path);
+		void gameStop();
 		void registerHook();
 		void distribute();
 		void clear();
+
+		std::string getName() { return name; }
 		std::string getNoteFile() {return noteFile;}
 		std::string getUIFile() {return uiFile;}
 		std::string getRenderFile() {return renderFile;}
