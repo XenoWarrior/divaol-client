@@ -689,7 +689,7 @@ namespace DivaOnlineConfig
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 317);
+            this.label1.Location = new System.Drawing.Point(6, 339);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(147, 13);
             this.label1.TabIndex = 21;
@@ -698,7 +698,7 @@ namespace DivaOnlineConfig
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(406, 305);
+            this.button1.Location = new System.Drawing.Point(412, 322);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(111, 30);
             this.button1.TabIndex = 20;
@@ -889,7 +889,7 @@ namespace DivaOnlineConfig
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(299, 532);
+            this.button2.Location = new System.Drawing.Point(307, 532);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 33);
             this.button2.TabIndex = 2;
@@ -901,7 +901,7 @@ namespace DivaOnlineConfig
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button3.Location = new System.Drawing.Point(383, 532);
+            this.button3.Location = new System.Drawing.Point(388, 532);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 33);
             this.button3.TabIndex = 3;
@@ -931,6 +931,7 @@ namespace DivaOnlineConfig
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Black;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Image = global::Properties.Resources.Noter;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(551, 108);
