@@ -1,0 +1,11 @@
+--------------------------------------------------
+Diva Online Logger
+--------------------------------------------------
+
+Core: Check all the components..
+
+Core: No problem!
+
+Core: Initialize
+
+Device 0
